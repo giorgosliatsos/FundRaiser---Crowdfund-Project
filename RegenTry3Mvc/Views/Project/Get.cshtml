@@ -1,0 +1,22 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model RegenTry3.Model.Project
+
+
+
+<h1> Project @Model.Title</h1>
+
+<a href="/Reward/Create/" class="btn btn-info" role="button">Add Reward</a>
+
+<table class="table">
+    <tr><td><b>Description</b></td> <td>@Model.Description</td></tr>
+    <tr><td><b>Photos</b></td>   <td>@Model.Photos</td></tr>
+    <tr><td><b>Videos</b></td>   <td>@Model.Videos</td></tr>
+
+</table>
+
+
