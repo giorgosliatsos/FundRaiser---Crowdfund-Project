@@ -12,17 +12,17 @@ namespace RegenTry3.Model
         public string Title { get; set; }
         public string Description { get; set; }
         public Category Category { get; set; }
-        public int Photos { get; set; }
+        public string Photos { get; set; }
 
-        public int Videos { get; set; }
+        public string Videos { get; set; }
 
-        public List<Post> Posts { get; set; }
+        public String Posts { get; set; }
 
         public List<Reward> Rewards { get; set; }
 
         public List<Backer> Backers { get; set; }
 
-        public decimal MoneyEarned { get; set; }
+        public decimal MoneyGoal { get; set; } // Money Target
 
         public Creator Creator { get; set; }
 

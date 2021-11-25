@@ -12,6 +12,8 @@ namespace RegenTry3.Model
 
         public string Username { get; set; }
 
+        public decimal Balance { get; set; }
+
         public List<Project> Projects { get; set; }
 
         public List<Reward> Rewards { get; set; }

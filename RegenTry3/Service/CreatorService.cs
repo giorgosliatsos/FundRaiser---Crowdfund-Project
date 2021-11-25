@@ -197,7 +197,7 @@ namespace RegenTry3.Service
             dbProject.Posts = project.Posts;
             dbProject.Rewards = project.Rewards;
             dbProject.Backers = project.Backers;
-            dbProject.MoneyEarned = project.MoneyEarned;
+            dbProject.MoneyGoal = project.MoneyGoal;
             dbProject.Creator = project.Creator;
             dbProject.BackerProjects = project.BackerProjects;
 

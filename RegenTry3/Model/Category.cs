@@ -20,6 +20,6 @@ namespace RegenTry3.Model
         [Description("Games")]
         GAMES,
         [Description("Music")]
-        MUSIC,
+        MUSIC
     }
 }

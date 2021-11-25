@@ -103,6 +103,16 @@ namespace RegenTry3.Service
             };
         }
 
+        public ApiResponse<List<Project>> ReadProjectByCategory(Category category)
+        {
+            return new ApiResponse<List<Project>>()
+            {
+                Data = _db.Projects.Where(item=>item.Category == category).ToList(),
+                Description = "",
+                StatusCode = 0
+            };
+        }
+
         public ApiResponse<List<Project>> ReadProject(Category category)
         {
             return new ApiResponse<List<Project>>()
@@ -127,7 +137,7 @@ namespace RegenTry3.Service
             dbProject.Posts = project.Posts;
             dbProject.Rewards = project.Rewards;
             dbProject.Backers = project.Backers;
-            dbProject.MoneyEarned = project.MoneyEarned;
+            dbProject.MoneyGoal = project.MoneyGoal;
             dbProject.Creator = project.Creator;
             dbProject.BackerProjects = project.BackerProjects;
 
