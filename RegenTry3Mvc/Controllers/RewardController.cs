@@ -11,10 +11,12 @@ namespace RegenTry3Mvc.Controllers
     public class RewardController : Controller
     {
         private readonly IRewardService rewardService;
+        private readonly IProjectService projectService;
 
-        public RewardController(IRewardService rewardService)
+        public RewardController(IRewardService rewardService, IProjectService projectService)
         {
             this.rewardService = rewardService;
+            this.projectService = projectService;
         }
         public IActionResult Index()
         {
@@ -39,8 +41,8 @@ namespace RegenTry3Mvc.Controllers
         public IActionResult Create(Reward reward)
         {
             rewardService.CreateReward(reward);
-
-            return RedirectToAction("../Project/Get");
+            return View();
         }
+
     }
 }

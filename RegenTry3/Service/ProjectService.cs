@@ -31,7 +31,7 @@ namespace RegenTry3.Service
             }
 
             _db.Projects.Add(project);
-            try 
+            try
             {
                 _db.SaveChanges();
             }
@@ -107,7 +107,7 @@ namespace RegenTry3.Service
         {
             return new ApiResponse<List<Project>>()
             {
-                Data = _db.Projects.Where(item=>item.Category == category).ToList(),
+                Data = _db.Projects.Where(item => item.Category == category).ToList(),
                 Description = "",
                 StatusCode = 0
             };
@@ -142,6 +142,21 @@ namespace RegenTry3.Service
             dbProject.BackerProjects = project.BackerProjects;
 
 
+            _db.SaveChanges();
+            return new ApiResponse<Project>()
+            {
+                Data = dbProject,
+                Description = "Project Succesfully Updated",
+                StatusCode = 0
+            };
+        }
+
+        public ApiResponse<Project> UpdateProjectReward(int projectId, Reward reward)
+        {
+            var dbProject = _db.Projects.Find(projectId);
+            if (dbProject == null) throw new KeyNotFoundException();
+
+            dbProject.Rewards.Add(reward);
             _db.SaveChanges();
             return new ApiResponse<Project>()
             {
