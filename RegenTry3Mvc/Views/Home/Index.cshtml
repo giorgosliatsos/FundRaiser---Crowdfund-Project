@@ -2,7 +2,28 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
+@*<div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>*@
+
+<div class="d-flex justify-content-center mt-2 ">
+    <div class="card mr-2" style="width: 18rem;">
+        <img  class="card-img-top  " src="https://psmag.com/.image/c_limit%2Ccs_srgb%2Cq_auto:good%2Cw_300/MTMxODI3Mjk4OTkwMDgyMDU4/shutterstock_125158133jpg.webp" alt="Card image cap" width="200" height="210">
+        <div class="card-body">
+            <h5 class="card-title">Creator</h5>
+            <p class="card-text">Make your dream projects come true</p>
+            <a class="btn btn-primary btn-block" asp-area="" asp-controller="Project" asp-action="Index">Create</a>
+        </div>
+    </div>
+
+    <div class="card" style="width: 18rem;">
+        <img height="210" class="card-img-top .img-fluid. width=200px height=100px" src="https://images-ext-2.discordapp.net/external/3cCXDO3hstgGeDNn9TUWPbLw620_2FAM5Ga98QA0shc/https/www.indiafilings.com/learn/wp-content/uploads/2019/09/Community-Investment-Fund.jpg?width=906&height=604" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">Back a Project</h5>
+            <p class="card-text">Fund the most creative Projects out there</p>
+            <a class="btn btn-primary btn-block" asp-area="" asp-controller="Backer" asp-action="Index">Back a Project</a>       
+        </div>
+    </div>
+
 </div>
