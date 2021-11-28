@@ -15,7 +15,7 @@ namespace RegenTry3.Service
 
         public ApiResponse<List<Project>> ReadProject();
 
-        public ApiResponse<List<Project>> ReadProject(Category category);
+        public ApiResponse<List<Project>> ReadProjectByCategory(int categoryId);
 
         public ApiResponse<Project> UpdateProject(int projectId, Project project);
 

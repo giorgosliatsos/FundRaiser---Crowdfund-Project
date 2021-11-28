@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using RegenTry3.Model;
 using RegenTry3.Service;
 using System;
@@ -17,9 +18,14 @@ namespace RegenTry3Mvc.Controllers
         {
             this.projectService = projectService;
         }
-        public IActionResult Index()
+
+
+        public IActionResult Index(IFormCollection formCollection)
         {
-            List<Project> projects = projectService.ReadProject().Data;
+            TempData["Username"] = Request.Query["Username"];
+            int categoryId = 0;
+            if (formCollection["category"].Count() > 0) categoryId = Int32.Parse(formCollection["category"].ToString());
+            List<Project> projects = projectService.ReadProjectByCategory(categoryId).Data;
             return View(projects);
         }
 

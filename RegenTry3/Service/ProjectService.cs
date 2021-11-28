@@ -103,27 +103,16 @@ namespace RegenTry3.Service
             };
         }
 
-        public ApiResponse<List<Project>> ReadProjectByCategory(Category category)
+        public ApiResponse<List<Project>> ReadProjectByCategory(int categoryId)
         {
-            return new ApiResponse<List<Project>>()
-            {
-                Data = _db.Projects.Where(item => item.Category == category).ToList(),
-                Description = "",
-                StatusCode = 0
-            };
-        }
-
-        public ApiResponse<List<Project>> ReadProject(Category category)
-        {
-            return new ApiResponse<List<Project>>()
-            {
-                Data = _db.
-                    Projects.
-                    Where(prj => prj.Category == category).
-                    ToList(),
-                Description = "",
-                StatusCode = 0
-            };
+            if (categoryId == 0) return ReadProject();
+            else return new ApiResponse<List<Project>>()
+                {
+                    Data = _db.Projects.Where(item => (int)item.Category == categoryId).ToList(),
+                    Description = "",
+                    StatusCode = 0
+                };
+            
         }
 
         public ApiResponse<Project> UpdateProject(int projectId, Project project)

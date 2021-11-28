@@ -41,7 +41,7 @@ namespace RegenTry3Mvc.Controllers
         public IActionResult Create(Reward reward)
         {
             rewardService.CreateReward(reward);
-            return View();
+            return RedirectToAction("Index", "Project", null);
         }
 
     }

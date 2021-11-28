@@ -16,5 +16,7 @@ namespace RegenTry3.Service
 
         public ApiResponse<List<Backer>> GetBacker();
 
+        public ApiResponse<bool> BackerExists(Backer backer);
+
     }
 }

@@ -10,7 +10,7 @@ namespace RegenTry3.Model
     public enum Category
     {
         [Description ("Comics")]
-        COMICS,
+        COMICS = 1,
         [Description("Design")]
         DESIGN,
         [Description("Film")]

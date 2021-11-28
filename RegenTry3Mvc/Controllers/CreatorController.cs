@@ -14,19 +14,26 @@ namespace RegenTry3Mvc.Controllers
             this.creatorService = creatorService;
         }
 
+
         public IActionResult Index()
+        {
+            return RedirectToAction(nameof(Log));
+        }
+
+        public IActionResult Log()
         {
             return View();
         }
 
-
         [HttpPost]
-        public IActionResult Create(Creator creator)
+        public IActionResult Log(Creator creator)
         {
-            creatorService.CreateCreator(creator);
-
-            return RedirectToAction(nameof(Index));
+            if (!(creatorService.CreatorExists(creator).Data)) creatorService.CreateCreator(creator);
+            return RedirectToAction(nameof(Index), "Project", new { Username = creator.Username });
         }
+
+
+
 
 
 

@@ -96,5 +96,15 @@ namespace RegenTry3.Service
                 };
             }
         }
+
+        public ApiResponse<bool> BackerExists(Backer backer)
+        {
+            return new ApiResponse<bool>()
+            {
+                Data = (_db.Backers.Find(backer.Id) != null),
+                Description = "",
+                StatusCode = 0
+            };
+        }
     }
 }

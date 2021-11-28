@@ -2,53 +2,63 @@
     ViewData["Title"] = "Creator Page";
 }
 
+
 <div class="text-center">
-    <h1 class="display-4">Welcome Creator</h1>
+
+
+    <h1 class="display-4"> @TempData["Username"] 's Projects </h1>    
 
     <a href="/Project/Create/" class="btn btn-info" role="button">Add New Project</a>
 </div>
 
+<div>
+
     <div>
 
-        <div>
-            <label for="categories">Short by category:</label>
 
-            <select name="categories" id="categories">
-                <option value="all">--</option>
-                <option value="COMICS">COMICS</option>
-                <option value="DESIGN">DESIGN</option>
-                <option value="FILM">FILM</option>
-                <option value="FOOD">FOOD</option>
-                <option value="GAMES">GAMES</option>
-                <option value="MUSIC">MUSIC</option>
+        @using (Html.BeginForm("Index", "Project", FormMethod.Post))
+        {
+            <label for="categoies">Short by category:</label>
+            @*<select onchange="this.form.submit()" name="category" id="category">*@
+            <select name="category" id="category">
+                <option value=0>--</option>
+                <option value=1>COMICS</option>
+                <option value=2>DESIGN</option>
+                <option value=3>FILM</option>
+                <option value=4>FOOD</option>
+                <option value=5>GAMES</option>
+                <option value=6>MUSIC</option>
             </select>
-        </div>
-
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Title</th>
-                    <th>Description</th>
-                    <th>Category</th>
-                    <th>Photos</th>
-                    <th>Videos</th>
-
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var project in Model)
-                {
-
-                    <tr>
-                        <td> <a href="/project/get/@project.Id"> @project.Title</a> </td>
-                        <td>   @project.Description  </td>
-                        <td>   @project.Category  </td>
-                        <td>   @project.Photos  </td>
-                        <td>   @project.Videos  </td>
-                    </tr>
-
-                }
-            </tbody>
-        </table>
-
+            <input type="submit" value="View"  />
+        }
     </div>
+
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Category</th>
+                <th>Photos</th>
+                <th>Videos</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var project in Model)
+            {
+
+                <tr>
+                    <td> <a href="/project/get/@project.Id"> @project.Title</a> </td>
+                    <td>   @project.Description  </td>
+                    <td>   @project.Category  </td>
+                    <td>   @project.Photos  </td>
+                    <td>   @project.Photos </td>
+                </tr>
+
+            }
+        </tbody>
+    </table>
+
+</div>

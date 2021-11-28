@@ -28,7 +28,8 @@ namespace RegenTry3Mvc
             services.AddDbContext<CrmDbContext>();
             services.AddScoped<IRewardService, RewardService>();
             services.AddScoped<IProjectService, ProjectService>();
-
+            services.AddScoped<ICreatorService, CreatorService>();
+            services.AddScoped<IBackerService, BackerService>();
 
             services.AddControllersWithViews();
         }
