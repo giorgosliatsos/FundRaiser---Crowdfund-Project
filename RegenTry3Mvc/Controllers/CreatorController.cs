@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using RegenTry3.Model;
 using RegenTry3.Service;
+using System.Web;
 
 namespace RegenTry3Mvc.Controllers
 {
@@ -29,8 +30,12 @@ namespace RegenTry3Mvc.Controllers
         public IActionResult Log(Creator creator)
         {
             if (!(creatorService.CreatorExists(creator).Data)) creatorService.CreateCreator(creator);
-            return RedirectToAction(nameof(Index), "Project", new { Username = creator.Username });
+
+            HttpContext.Response.Cookies.Append("Username", creator.Username);
+
+            return RedirectToAction(nameof(Index), "Project",null);
         }
+
 
 
 

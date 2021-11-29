@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace RegenTry3Mvc.Controllers
 {
@@ -22,7 +23,8 @@ namespace RegenTry3Mvc.Controllers
 
         public IActionResult Index(IFormCollection formCollection)
         {
-            TempData["Username"] = Request.Query["Username"];
+            
+            TempData["Username"] = HttpContext.Request.Cookies["Username"];
             int categoryId = 0;
             if (formCollection["category"].Count() > 0) categoryId = Int32.Parse(formCollection["category"].ToString());
             List<Project> projects = projectService.ReadProjectByCategory(categoryId).Data;
@@ -49,6 +51,7 @@ namespace RegenTry3Mvc.Controllers
             projectService.CreateProject(project);
 
             return RedirectToAction(nameof(Index));
+     
         }
 
 

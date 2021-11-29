@@ -16,7 +16,7 @@ namespace RegenTry3.Model
 
         public string Videos { get; set; }
 
-        public String Posts { get; set; }
+        public string Posts { get; set; }
 
         public List<Reward> Rewards { get; set; }
 
