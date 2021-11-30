@@ -57,16 +57,22 @@
                     <td> <a href="/project/get/@project.Id"> @project.Title</a> </td>
                     <td>   @project.Description  </td>
                     <td>   @project.Category  </td>
+                    @if (project.Photos != null)
+                    {
                     <td>   @project.Photos  </td>
+                    }
                     @if (project.Photos != null)
                     {
                         <td>  <img src="/images/@project.Photos" title="Project image" width="100px" height="100px" /> </td>
                     }
-
-
-
-
-                    @*<td>   @project.Photos </td>*@
+                    @if (project.Photos == null)
+                    {
+                    <td style="padding-right: 10px">   </td>
+                    }
+                     @if (project.Photos == null)
+                    {
+                    <td style="padding-right: 10px">   </td>
+                    }
                     <td> <a href="/project/delete/@project.Id"  title="delete" ><b>X</b></a> </td>
                     <td> <a href="/project/update/@project.Id" title="update"><b>V</b></a> </td>
 
