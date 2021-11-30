@@ -1,12 +1,13 @@
 ﻿@{
     ViewData["Title"] = "Creator Page";
 }
+@model List<RegenTry3.Model.Project>
 
 
 <div class="text-center">
 
 
-    <h1 class="display-4"> @TempData["Username"]'s Projects </h1>    
+    <h1 class="display-4"> @TempData["Username"]'s Projects </h1>
 
     <a href="/Project/Create/" class="btn btn-info" role="button">Add New Project</a>
 </div>
@@ -15,7 +16,7 @@
 
     <div>
 
-
+        <p> This is the home page for projects </p>
         @using (Html.BeginForm("Index", "Project", FormMethod.Post))
         {
             <label for="categoies">Short by category:</label>
@@ -29,7 +30,7 @@
                 <option value=5>GAMES</option>
                 <option value=6>MUSIC</option>
             </select>
-            <input type="submit" value="View"  />
+            <input type="submit" value="View" />
         }
     </div>
 
@@ -40,6 +41,7 @@
                 <th>Title</th>
                 <th>Description</th>
                 <th>Category</th>
+                <th>Photos Url</th>
                 <th>Photos</th>
                 <th>Videos</th>
 
@@ -54,7 +56,17 @@
                     <td>   @project.Description  </td>
                     <td>   @project.Category  </td>
                     <td>   @project.Photos  </td>
-                    <td>   @project.Photos </td>
+                    @if (project.Photos != null)
+                    {
+                        <td>  <img src="/images/@project.Photos" title="Project image" width="100px" height="100px" /> </td>
+                    }
+
+
+
+
+                    @*<td>   @project.Photos </td>*@
+
+
                 </tr>
 
             }

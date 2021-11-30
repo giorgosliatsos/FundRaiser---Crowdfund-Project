@@ -1,22 +1,45 @@
 ﻿@using RegenTry3.Model
+@model ProjectImVi
 
-<form asp-action="Create">
+<form asp-action="Create" enctype="multipart/form-data">
+
+
+    @*<div>
+            Name
+        </div>
+        <div>
+            <input form="Project.Title" placeholder="Title" />
+        </div>
+         <div>
+            Description
+        </div>
+        <div>
+            <input form="Project.Description" placeholder="Description" />
+        </div>
+         <div>
+            Category
+        </div>
+        <div>
+            <input form="Project.Category" placeholder="Category" />
+        </div>*@
 
     <div class="form-row">
         <div class="form-group col-md-6">
             <label>Title:</label>
-            <input type="text" class="form-control" id="email" name="Title" placeholder="E.g.(Unity Project 101)">
+            <input type="text" class="form-control" id="email" name="Project.Title" placeholder="E.g.(Unity Project 101)">
         </div>
         <div class="form-group col-md-6">
             <label>Description:</label>
-            <input type="text" class="form-control" id="description" name="Description" placeholder="E.g.(description)">
+            <input type="text" class="form-control" id="description" name="Project.Description" placeholder="E.g.(description)">
         </div>
     </div>
+
     <div class="form-group">
         <label>Category:</label>
-        <select name="Category" class="form-control form-control-sm" placeholder="Category" asp-items="@(Html.GetEnumSelectList<Category>())"></select>
+        <select name="Project.Category" class="form-control form-control-sm" placeholder="Category" asp-items="@(Html.GetEnumSelectList<Category>())"></select>
     </div>
-    <div class="form-row">
+
+    @*    <div class="form-row">
 
         <div class="input-group col-md-6">
             <div class="input-group-prepend">
@@ -37,8 +60,19 @@
                 <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
             </div>
         </div>
+        </div>*@
 
-    </div>
+    <dl>
+        <dt>
+            <label asp-for="ProjectImage"></label>
+        </dt>
+        <dd>
+            <input asp-for="ProjectImage" type="file">
+            <span asp-validation-for="ProjectImage"></span>
+        </dd>
+    </dl>
+
+
     <div class="d-flex justify-content-center">
         <button type="submit" value="Create Project" class="btn btn-primary mt-2">Create</button>
     </div>

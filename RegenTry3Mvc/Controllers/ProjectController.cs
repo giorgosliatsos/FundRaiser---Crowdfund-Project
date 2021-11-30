@@ -7,6 +7,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
+using System.IO;
+using Microsoft.Extensions.Hosting;
+using RegenTry3Mvc.Models;
 
 namespace RegenTry3Mvc.Controllers
 {
@@ -14,10 +17,12 @@ namespace RegenTry3Mvc.Controllers
     {
 
         private readonly IProjectService projectService;
-        
-        public ProjectController(IProjectService projectService)
+        private readonly IHostEnvironment hostEnvironment;
+
+        public ProjectController(IProjectService projectService, IHostEnvironment hostEnvironment)
         {
             this.projectService = projectService;
+            this.hostEnvironment = hostEnvironment;
         }
 
 
@@ -50,15 +55,32 @@ namespace RegenTry3Mvc.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(Project project)
+        public IActionResult Create(ProjectImVi projectImVi)
         {
+            Project project = projectImVi.Project;
+            var img = projectImVi.ProjectImage;
+
+            if (img != null)
+            {
+                var uniqueFileName = GetUniqueFileName(img.FileName);
+                var images = Path.Combine(hostEnvironment.ContentRootPath + "\\wwwroot", "images");
+                var filePath = Path.Combine(images, uniqueFileName);
+                img.CopyTo(new FileStream(filePath, FileMode.Create));
+                project.Photos = uniqueFileName;
+            }
             projectService.CreateProject(project,Int32.Parse(HttpContext.Request.Cookies["Id"]));
 
             return RedirectToAction(nameof(Index));
-     
         }
 
-
+        private string GetUniqueFileName(string fileName)
+        {
+            fileName = Path.GetFileName(fileName);
+            return Path.GetFileNameWithoutExtension(fileName)
+                      + "_"
+                      + Guid.NewGuid().ToString().Substring(0, 4)
+                      + Path.GetExtension(fileName);
+        }
 
 
 
