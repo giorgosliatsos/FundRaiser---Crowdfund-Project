@@ -9,7 +9,7 @@
 
     <h1 class="display-4"> @TempData["Username"]'s Projects </h1>
 
-    <a href="/Project/Create/" class="btn btn-info" role="button">Add New Project</a>
+    <a href="/Project/Create/" class="btn btn-info mt-4" role="button">Add New Project</a>
 </div>
 
 <div>
@@ -19,7 +19,7 @@
         <p> This is the home page for projects </p>
         @using (Html.BeginForm("Index", "Project", FormMethod.Post))
         {
-            <label for="categoies">Short by category:</label>
+            <label for="categories">Short by category:</label>
             @*<select onchange="this.form.submit()" name="category" id="category">*@
             <select name="category" id="category">
                 <option value=0>--</option>
@@ -30,7 +30,7 @@
                 <option value=5>GAMES</option>
                 <option value=6>MUSIC</option>
             </select>
-            <input type="submit" value="View" />
+            <input type="submit" value="View"  />
         }
     </div>
 
