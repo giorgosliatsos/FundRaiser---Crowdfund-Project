@@ -97,13 +97,38 @@ namespace RegenTry3.Service
             }
         }
 
-        public ApiResponse<bool> BackerExists(Backer backer)
+        //public ApiResponse<bool> BackerExists(Backer backer)
+        //{
+        //    return new ApiResponse<bool>()
+        //    {
+        //        Data = (_db.Backers.Find(backer.Id) != null),
+        //        Description = "",
+        //        StatusCode = 0
+        //    };
+        //}
+
+
+        public ApiResponse<int> FindBackerId(string username)
         {
-            return new ApiResponse<bool>()
+
+            var backerExists = _db.Backers.FirstOrDefault(backer => backer.Username == username);
+  
+
+            if (backerExists == null)
             {
-                Data = (_db.Backers.Find(backer.Id) != null),
-                Description = "",
-                StatusCode = 0
+                return new ApiResponse<int>()
+                {
+                    Data = -1,
+                    StatusCode = 0,
+                    Description = "Backer not found"
+                };
+            }
+
+            return new ApiResponse<int>()
+            {
+                Data = backerExists.Id,
+                StatusCode = 0,
+                Description = "Backer found"
             };
         }
     }

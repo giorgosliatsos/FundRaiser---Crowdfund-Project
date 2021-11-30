@@ -154,5 +154,44 @@ namespace RegenTry3.Service
                 StatusCode = 0
             };
         }
+
+        public Project CreateProject(Project project, int creatorId)
+        {
+
+            if (project == null) return null;
+            project.Creator = _db.Creators.Find(creatorId);
+
+            _db.Projects.Add(project);
+            _db.SaveChanges();
+            return project;
+        }
+
+        public ApiResponse<List<Project>> ReadProjectByCategory(int categoryId, int creatorId)
+        {
+
+            var creatorsProjects = _db.Projects.Where(cr => (int)cr.Creator.Id == creatorId).ToList();
+            if (creatorsProjects == null) return new ApiResponse<List<Project>>()
+            {
+                Data = null,
+                Description = "Creator Doesnt Exist",
+                StatusCode = 1
+            };
+
+
+            if (categoryId == 0) return new ApiResponse<List<Project>>()
+            {
+                Data = creatorsProjects,
+                Description = "",
+                StatusCode = 0
+            };
+            else return new ApiResponse<List<Project>>()
+            {
+                Data = creatorsProjects.Where(item => (int)item.Category == categoryId).ToList(),
+                Description = "",
+                StatusCode = 0
+            };
+
+        }
+
     }
 }

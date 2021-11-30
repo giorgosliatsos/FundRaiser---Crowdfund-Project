@@ -25,9 +25,12 @@ namespace RegenTry3Mvc.Controllers
         {
             
             TempData["Username"] = HttpContext.Request.Cookies["Username"];
+            TempData["Id"] = HttpContext.Request.Cookies["Id"];
+            TempData["Role"] = HttpContext.Request.Cookies["Role"];
+
             int categoryId = 0;
             if (formCollection["category"].Count() > 0) categoryId = Int32.Parse(formCollection["category"].ToString());
-            List<Project> projects = projectService.ReadProjectByCategory(categoryId).Data;
+            List<Project> projects = projectService.ReadProjectByCategory(categoryId, Int32.Parse(HttpContext.Request.Cookies["Id"])).Data;
             return View(projects);
         }
 
@@ -36,6 +39,7 @@ namespace RegenTry3Mvc.Controllers
             Project project = projectService.ReadProject(id).Data;
 
             if (project == null) return NotFound();
+            HttpContext.Response.Cookies.Append("ProjectId", id.ToString());
             return View(project);
         }
 
@@ -48,7 +52,7 @@ namespace RegenTry3Mvc.Controllers
         [HttpPost]
         public IActionResult Create(Project project)
         {
-            projectService.CreateProject(project);
+            projectService.CreateProject(project,Int32.Parse(HttpContext.Request.Cookies["Id"]));
 
             return RedirectToAction(nameof(Index));
      

@@ -31,8 +31,18 @@ namespace RegenTry3Mvc.Controllers
         [HttpPost]
         public IActionResult Log(Backer backer)
         {
-            if (!(backerService.BackerExists(backer).Data)) backerService.CreateBacker(backer);
-            return RedirectToAction(nameof(Index), "Project", new { Username = backer.Username });
+            int backerId = backerService.FindBackerId(backer.Username).Data;
+            if (backerId < 0)
+            {
+                var newBacker = backerService.CreateBacker(backer).Data;
+                backerId = backerService.FindBackerId(newBacker.Username).Data;
+            }
+
+            HttpContext.Response.Cookies.Append("Id", backerId.ToString());
+            HttpContext.Response.Cookies.Append("Username", backer.Username);
+            HttpContext.Response.Cookies.Append("Role", "Backer");
+
+            return RedirectToAction(nameof(Index), "Project", null);
         }
 
     }

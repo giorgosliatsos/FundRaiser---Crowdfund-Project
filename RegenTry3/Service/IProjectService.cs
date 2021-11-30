@@ -11,11 +11,15 @@ namespace RegenTry3.Service
     public interface IProjectService
     {
         public ApiResponse<Project> CreateProject(Project project);
+
+        public Project CreateProject(Project project, int creatorId);
         public ApiResponse<Project> ReadProject(int projectId);
 
         public ApiResponse<List<Project>> ReadProject();
 
         public ApiResponse<List<Project>> ReadProjectByCategory(int categoryId);
+
+        public ApiResponse<List<Project>> ReadProjectByCategory(int categoryId, int creatorId);
 
         public ApiResponse<Project> UpdateProject(int projectId, Project project);
 

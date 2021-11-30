@@ -11,6 +11,8 @@ namespace RegenTry3.Service
     public interface IRewardService
     {
         public ApiResponse<Reward> CreateReward(Reward reward);
+
+        public ApiResponse<Reward> CreateReward(Reward reward, int projectId);
         public ApiResponse<Reward> ReadReward(int rewardId);
 
         public ApiResponse<Reward> UpdateReward(int rewardId, Reward reward);

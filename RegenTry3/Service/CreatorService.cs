@@ -126,12 +126,34 @@ namespace RegenTry3.Service
             };
         }
 
-        public ApiResponse<bool> CreatorExists(Creator creator) {
-            return new ApiResponse<bool>()
+        //public ApiResponse<bool> CreatorExists(Creator creator) {
+        //    return new ApiResponse<bool>()
+        //    {
+        //        Data = (_db.Creators.Find(creator.Id)!=null),
+        //        Description = "",
+        //        StatusCode = 0
+        //    };
+        //}
+
+        public ApiResponse<int> FindCreatorId(string username) {
+
+            var creatorExists = _db.Creators.FirstOrDefault(creator => creator.Username == username);
+
+            if( creatorExists == null)
             {
-                Data = (_db.Creators.Find(creator.Id)!=null),
-                Description = "",
-                StatusCode = 0
+                return new ApiResponse<int>()
+                {
+                    Data = -1,
+                    StatusCode = 0,
+                    Description = "Creator not found"
+            };
+            }
+
+            return new ApiResponse<int>()
+            {
+                Data = creatorExists.Id,
+                StatusCode = 0,
+                Description = "Creator found"
             };
         }
     }

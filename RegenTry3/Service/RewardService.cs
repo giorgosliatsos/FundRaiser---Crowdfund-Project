@@ -51,6 +51,43 @@ namespace RegenTry3.Service
             
         }
 
+        public ApiResponse<Reward> CreateReward(Reward reward, int projectId)
+        {
+            if (reward == null || projectId<0)
+            {
+                return new ApiResponse<Reward>()
+                {
+                    Data = null,
+                    Description = "Reward was null ",
+                    StatusCode = 1
+                };
+            }
+
+
+            reward.Project = _db.Projects.Find(projectId);
+
+            _db.Rewards.Add(reward);
+            try { _db.SaveChanges(); }
+
+            catch
+            {
+                return new ApiResponse<Reward>()
+                {
+                    Data = null,
+                    Description = "Reward not Saved to Database",
+                    StatusCode = 2
+                };
+            }
+
+            return new ApiResponse<Reward>()
+            {
+                Data = reward,
+                Description = "Reward Succesfully Posted",
+                StatusCode = 0
+            };
+
+        }
+
         public ApiResponse<bool> DeleteReward(int rewardId)
         {
             var reward = _db.Rewards.Find(rewardId);

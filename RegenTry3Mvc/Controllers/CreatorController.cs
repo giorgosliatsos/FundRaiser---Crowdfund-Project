@@ -29,11 +29,19 @@ namespace RegenTry3Mvc.Controllers
         [HttpPost]
         public IActionResult Log(Creator creator)
         {
-            if (!(creatorService.CreatorExists(creator).Data)) creatorService.CreateCreator(creator);
+            int creatorId = creatorService.FindCreatorId(creator.Username).Data;
+            if (creatorId <0)
+            { 
+                var newCreator=creatorService.CreateCreator(creator).Data; 
+                creatorId = creatorService.FindCreatorId(newCreator.Username).Data;
+            }
 
+
+            HttpContext.Response.Cookies.Append("Id", creatorId.ToString());
             HttpContext.Response.Cookies.Append("Username", creator.Username);
+            HttpContext.Response.Cookies.Append("Role", "Creator");
 
-            return RedirectToAction(nameof(Index), "Project",null);
+            return RedirectToAction(nameof(Index), "Project", null);
         }
 
 
