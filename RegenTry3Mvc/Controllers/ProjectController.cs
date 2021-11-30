@@ -82,6 +82,12 @@ namespace RegenTry3Mvc.Controllers
                       + Path.GetExtension(fileName);
         }
 
+        public IActionResult Delete(int id)
+        {
+
+            projectService.DeleteProject(id);
+            return RedirectToAction(nameof(Index));
+        }
 
 
 
