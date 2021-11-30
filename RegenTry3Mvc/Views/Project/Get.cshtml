@@ -7,10 +7,12 @@
 @model RegenTry3.Model.Project
 
 
-
-<h1> Project @Model.Title</h1>
-
-<a href="/Reward/Create/?ProjectId=@Model.Id"  class="btn btn-info" role="button">Add Reward</a>
+<div class="d-flex justify-content-center">
+    <h1> Project @Model.Title</h1>
+</div>
+<div class="m-3">
+    <a href="/Reward/Create/?ProjectId=@Model.Id" class="btn btn-info" role="button">Add Reward</a>
+</div>
 
 <table class="table">
     <tr><td><b>Description</b></td> <td>@Model.Description</td></tr>
