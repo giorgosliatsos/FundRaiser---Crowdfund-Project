@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace RegenTry3.Model
 {
-    public class Creator //maybe not
+    public class Creator : Person
     {
         public int Id { get; set; } 
-        public string Username { get; set; } 
 
         public List<Project> Projects { get; set; }
     };

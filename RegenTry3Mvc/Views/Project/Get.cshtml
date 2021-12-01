@@ -16,8 +16,40 @@
 
 <table class="table">
     <tr><td><b>Description</b></td> <td>@Model.Description</td></tr>
-    <tr><td><b>Photos</b></td>   <td>@Model.Photos</td></tr>
+    <tr><td><b>Post</b></td>   <td>@Model.Posts</td> <td><a href="/project/updatepost/@Model.Id" data-toogles="tooltip" title="Update Post" class="btn btn-info" role="button">Update post</a></td></tr>
+
+    <tr>
+        <td><b>Photos</b></td>
+        @if (@Model.Photos != null)
+        {
+            <td>  <img src="/images/@Model.Photos" title="Project image" width="100px" height="100px" /> </td>
+        }
+        
+    </tr>
+   
+
     <tr><td><b>Videos</b></td>   <td>@Model.Videos</td></tr>
+    <tr><td><b>Rewards</b></td>   <td>@Model.Rewards</td></tr>
+
+    @*<table class="table">
+            <thead>
+                <tr>
+                    <th>Reward</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var reward in Model.Rewards)
+                {
+
+                <tr>
+                    <td> @reward.Title </td>
+                    <td> @reward.Description </td>
+                    <td> @reward.Price  &euro; </td>
+                </tr>
+                }
+            </tbody>
+        </table>*@
+
 
 </table>
 

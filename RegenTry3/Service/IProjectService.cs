@@ -23,6 +23,8 @@ namespace RegenTry3.Service
 
         public ApiResponse<Project> UpdateProject(int projectId, Project project);
 
+        public ApiResponse<Project> UpdatePost(int projectId, String newPost);
+
         public ApiResponse<Project> UpdateProjectReward(int projectId, Reward reward);
 
         public ApiResponse<bool> DeleteProject(int projectId);

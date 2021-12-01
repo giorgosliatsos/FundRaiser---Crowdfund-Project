@@ -6,11 +6,9 @@ using System.Threading.Tasks;
 
 namespace RegenTry3.Model
 {
-    public class Backer 
+    public class Backer : Person
     {
         public int Id { get; set; }
-
-        public string Username { get; set; }
 
         public decimal Balance { get; set; }
 

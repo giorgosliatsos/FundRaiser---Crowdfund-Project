@@ -193,5 +193,23 @@ namespace RegenTry3.Service
 
         }
 
+        public ApiResponse<Project> UpdatePost(int projectId, string newPost)
+        {
+            var updatedProject = _db.Projects.Find(projectId);
+
+            if (newPost != null)
+            {
+                updatedProject.Posts = newPost;
+                _db.SaveChanges();
+            }
+                
+            return new ApiResponse<Project>()
+            {
+                Data = updatedProject,
+                Description = "Post updated",
+                StatusCode = 0
+            };
+            
+        }
     }
 }

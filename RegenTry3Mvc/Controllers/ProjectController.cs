@@ -84,8 +84,20 @@ namespace RegenTry3Mvc.Controllers
 
         public IActionResult Delete(int id)
         {
-
             projectService.DeleteProject(id);
+            return RedirectToAction(nameof(Index));
+        }
+
+
+        public IActionResult UpdatePost(int id)
+        {
+              return View();
+        }
+
+        [HttpPost]
+        public IActionResult UpdatePost(int id, string newPost)
+        {
+            projectService.UpdatePost(id, newPost);
             return RedirectToAction(nameof(Index));
         }
 

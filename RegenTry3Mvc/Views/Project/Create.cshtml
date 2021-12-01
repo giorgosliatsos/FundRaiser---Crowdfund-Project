@@ -34,6 +34,11 @@
         </div>
     </div>
 
+    <div class="form-group col-md-6">
+        <label>Post:</label>
+        <input type="text" class="form-control" id="post" name="Project.Posts" placeholder="E.g. Just started">
+    </div>
+
     <div class="form-group">
         <label>Category:</label>
         <select name="Project.Category" class="form-control form-control-sm" placeholder="Category" asp-items="@(Html.GetEnumSelectList<Category>())"></select>

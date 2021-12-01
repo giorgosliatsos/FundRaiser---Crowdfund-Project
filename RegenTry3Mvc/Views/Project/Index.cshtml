@@ -41,7 +41,7 @@
                 <th>Title</th>
                 <th>Description</th>
                 <th>Category</th>
-                <th>Photos Url</th>
+                <th>Post</th>
                 <th>Photos</th>
                 @*<th>Videos</th>*@
                 <th>Delete</th>
@@ -53,30 +53,33 @@
             @foreach (var project in Model)
             {
 
-                <tr>
-                    <td> <a href="/project/get/@project.Id"> @project.Title</a> </td>
-                    <td>   @project.Description  </td>
-                    <td>   @project.Category  </td>
-                    @if (project.Photos != null)
-                    {
+            <tr>
+                <td> <a href="/project/get/@project.Id" data-toogles="tooltip" title="View Project"> @project.Title</a> </td>
+                <td>   @project.Description  </td>
+                <td>   @project.Category  </td>
+                @* @if (project.Photos != null)
+                {
                     <td>   @project.Photos  </td>
-                    }
-                    @if (project.Photos != null)
-                    {
-                        <td>  <img src="/images/@project.Photos" title="Project image" width="100px" height="100px" /> </td>
-                    }
-                    @if (project.Photos == null)
-                    {
-                    <td style="padding-right: 10px">   </td>
-                    }
-                     @if (project.Photos == null)
-                    {
-                    <td style="padding-right: 10px">   </td>
-                    }
-                    <td> <a href="/project/delete/@project.Id"  title="delete" ><b>X</b></a> </td>
-                    <td> <a href="/project/update/@project.Id" title="update"><b>V</b></a> </td>
+                }*@
 
-                </tr>
+                <td> <a href="/project/updatepost/@project.Id" data-toogles="tooltip" title="Update Post"> @project.Posts</a> </td>
+                @if (project.Photos != null)
+                {
+                    <td>  <img src="/images/@project.Photos" title="Project image" width="100px" height="100px" /> </td>
+                }
+
+                @if (project.Photos == null)
+                {
+                    <td style="padding-right: 10px">   </td>
+                }
+                @if (project.Photos == null)
+                {
+                    <td style="padding-right: 10px">   </td>
+                }
+                <td> <a href="/project/delete/@project.Id" title="Delete Project"><b>X</b></a> </td>
+                <td> <a href="/project/update/@project.Id" title="Update Project"><b>V</b></a> </td>
+
+            </tr>
 
             }
         </tbody>
