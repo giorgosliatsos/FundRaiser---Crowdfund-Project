@@ -54,8 +54,8 @@ namespace RegenTry3Mvc.Controllers
 
         public IActionResult Get(int id)
         {
+            TempData["Role"] = HttpContext.Request.Cookies["Role"];
             Project project = projectService.ReadProject(id).Data;
-
             if (project == null) return NotFound();
             HttpContext.Response.Cookies.Append("ProjectId", id.ToString());
             return View(project);

@@ -5,19 +5,28 @@
 }
 
 @model RegenTry3.Model.Project
-
+@using RegenTry3.Model
 
 
 <div class="d-flex justify-content-center">
     <h1> Project @Model.Title</h1>
 </div>
-<div class="m-3">
-    <a href="/Reward/Create/?ProjectId=@Model.Id" class="btn btn-info" role="button">Add Reward</a>
-</div>
+
+@if (@TempData["Role"].ToString() == "Creator")
+{
+    <div class="m-3">
+        <a href="/Reward/Create/?ProjectId=@Model.Id" class="btn btn-info" role="button">Add Reward</a>
+    </div>
+}
 
 <table class="table">
     <tr><td><b>Description</b></td> <td>@Model.Description</td></tr>
-    <tr><td><b>Post</b></td>   <td>@Model.Posts</td> <td><a href="/project/updatepost/@Model.Id" data-toogles="tooltip" title="Update Post" class="btn btn-info" role="button">Update post</a></td></tr>
+    <tr>
+        <td><b>Post</b></td>
+        <td>@Model.Posts</td>
+        @if (@TempData["Role"].ToString() == "Creator")
+        {<td><a href="/project/updatepost/@Model.Id" data-toogles="tooltip" title="Update Post" class="btn btn-info" role="button">Update post</a></td>}
+    </tr>
 
     <tr>
         <td><b>Photos</b></td>
@@ -35,26 +44,29 @@
             <td> <iframe width="360" height="240" src=@Model.Videos title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> </td>
         }
     </tr>
-    
 
 
 
-    <tr><td><b>Rewards</b></td>   <td>@Model.Rewards</td></tr>
 
-  @*  <table class="table">
+    <tr>
+        <td><b>Rewards</b></td>
+        <td>@Model.Rewards</td>
+    </tr>
+
+    @*<table class="table">
             <thead>
                 <tr>
                     <th>Reward</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach (var project in Model.Rewards)
+                @foreach (var reward in Model.Rewards)
                 {
 
                 <tr>
-                    <td> @project.Title </td>
-                    <td> @project.Description </td>
-                    <td> @project.Price  &euro; </td>
+                    <td> @reward.Title </td>
+                    <td> @reward.Description </td>
+                    <td> @reward.Price  &euro; </td>
                 </tr>
                 }
             </tbody>
