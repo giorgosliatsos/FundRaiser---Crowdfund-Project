@@ -26,9 +26,22 @@ namespace RegenTry3Mvc.Controllers
         }
 
 
-        public IActionResult Index(IFormCollection formCollection)
+        public IActionResult BackerIndex(IFormCollection formCollection)
         {
             
+            TempData["Username"] = HttpContext.Request.Cookies["Username"];
+            TempData["Id"] = HttpContext.Request.Cookies["Id"];
+            TempData["Role"] = HttpContext.Request.Cookies["Role"];
+
+            int categoryId = 0;
+            if (formCollection["category"].Count() > 0) categoryId = Int32.Parse(formCollection["category"].ToString());
+            List<Project> projects = projectService.ReadProjectByCategory(categoryId, Int32.Parse(HttpContext.Request.Cookies["Id"])).Data;
+            return View(projects);
+        }
+
+        public IActionResult CreatorIndex(IFormCollection formCollection)
+        {
+
             TempData["Username"] = HttpContext.Request.Cookies["Username"];
             TempData["Id"] = HttpContext.Request.Cookies["Id"];
             TempData["Role"] = HttpContext.Request.Cookies["Role"];

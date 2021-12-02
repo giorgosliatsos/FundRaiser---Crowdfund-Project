@@ -1,0 +1,96 @@
+﻿@{
+    ViewData["Title"] = "Backer Page";
+}
+@model List<RegenTry3.Model.Project>
+
+
+<div class="text-center">
+
+
+    <h1 class="display-4"> @TempData["Username"]'s Projects </h1>
+
+    <a href="/Project/Create/" class="btn btn-info mt-4" role="button">Add New Project</a>
+</div>
+
+<div>
+
+    <div>
+
+        <p> This is the home page for projects </p>
+        @using (Html.BeginForm("Index", "Project", FormMethod.Post))
+        {
+            <label for="categories">Short by category:</label>
+            @*<select onchange="this.form.submit()" name="category" id="category">*@
+            <select name="category" id="category">
+                <option value=0>--</option>
+                <option value=1>COMICS</option>
+                <option value=2>DESIGN</option>
+                <option value=3>FILM</option>
+                <option value=4>FOOD</option>
+                <option value=5>GAMES</option>
+                <option value=6>MUSIC</option>
+            </select>
+            <input class="btn btn-success btn-sm mb-2" type="submit" value="View"  />
+        }
+    </div>
+
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Category</th>
+                <th>Post</th>
+                <th>Photos</th>
+                <th>Videos</th>
+                <th>Delete</th>
+                <th>Update</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var project in Model)
+            {
+
+            <tr>
+                <td> <a href="/project/get/@project.Id" data-toogles="tooltip" title="View Project"> @project.Title</a> </td>
+                <td>   @project.Description  </td>
+                <td>   @project.Category  </td>
+                @* @if (project.Photos != null)
+        {
+            <td>   @project.Photos  </td>
+        }*@
+
+                <td> <a href="/project/updatepost/@project.Id" data-toogles="tooltip" title="Update Post"> @project.Posts</a> </td>
+                @if (project.Photos != null)
+                {
+                    <td>  <img src="/images/@project.Photos" title="Project image" width="100px" height="100px" /> </td>
+                }
+
+                @if (project.Photos == null)
+                {
+                    <td style="padding-right: 10px"> No Photos  </td>
+                }
+                @*   @if (project.Photos == null)
+        {
+            <td style="padding-right: 10px">   </td>
+        }*@
+                @if (project.Videos == null)
+                {
+                    <td style="padding-right: 10px"> No Videos  </td>
+                }
+                @if (project.Videos != null)
+                {
+                    <td> <iframe width="180" height="100" src=@project.Videos title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> </td>
+                }
+                <td> <a href="/project/delete/@project.Id" title="Delete Project"><b>X</b></a> </td>
+                <td> <a href="/project/update/@project.Id" title="Update Project"><b>V</b></a> </td>
+
+            </tr>
+
+            }
+        </tbody>
+    </table>
+
+</div>

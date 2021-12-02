@@ -41,7 +41,7 @@ namespace RegenTry3Mvc.Controllers
             HttpContext.Response.Cookies.Append("Username", creator.Username);
             HttpContext.Response.Cookies.Append("Role", "Creator");
 
-            return RedirectToAction(nameof(Index), "Project", null);
+            return RedirectToAction("CreatorIndex", "Project", null);
         }
 
 
