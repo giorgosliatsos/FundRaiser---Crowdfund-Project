@@ -43,7 +43,7 @@
                 <th>Category</th>
                 <th>Post</th>
                 <th>Photos</th>
-                @*<th>Videos</th>*@
+                <th>Videos</th>
                 <th>Delete</th>
                 <th>Update</th>
 
@@ -58,9 +58,9 @@
                 <td>   @project.Description  </td>
                 <td>   @project.Category  </td>
                 @* @if (project.Photos != null)
-                {
-                    <td>   @project.Photos  </td>
-                }*@
+        {
+            <td>   @project.Photos  </td>
+        }*@
 
                 <td> <a href="/project/updatepost/@project.Id" data-toogles="tooltip" title="Update Post"> @project.Posts</a> </td>
                 @if (project.Photos != null)
@@ -70,12 +70,20 @@
 
                 @if (project.Photos == null)
                 {
-                    <td style="padding-right: 10px">   </td>
+                    <td style="padding-right: 10px"> No Photos  </td>
                 }
-             @*   @if (project.Photos == null)
+                @*   @if (project.Photos == null)
+        {
+            <td style="padding-right: 10px">   </td>
+        }*@
+                @if (project.Videos == null)
                 {
-                    <td style="padding-right: 10px">   </td>
-                }*@
+                    <td style="padding-right: 10px"> No Videos  </td>
+                }
+                @if (project.Videos != null)
+                {
+                    <td> <iframe width="180" height="100" src=@project.Videos title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> </td>
+                }
                 <td> <a href="/project/delete/@project.Id" title="Delete Project"><b>X</b></a> </td>
                 <td> <a href="/project/update/@project.Id" title="Update Project"><b>V</b></a> </td>
 

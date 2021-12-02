@@ -24,11 +24,20 @@
         {
             <td>  <img src="/images/@Model.Photos" title="Project image" width="100px" height="100px" /> </td>
         }
-        
-    </tr>
-   
 
-    <tr><td><b>Videos</b></td>   <td>@Model.Videos</td></tr>
+    </tr>
+
+    <tr>
+        <td><b>Videos</b></td>
+        @if (@Model.Videos != null)
+        {
+            <td> <iframe width="360" height="240" src=@Model.Videos title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> </td>
+        }
+    </tr>
+    
+
+
+
     <tr><td><b>Rewards</b></td>   <td>@Model.Rewards</td></tr>
 
     @*<table class="table">

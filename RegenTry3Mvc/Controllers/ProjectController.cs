@@ -59,6 +59,8 @@ namespace RegenTry3Mvc.Controllers
         {
             Project project = projectImVi.Project;
             var img = projectImVi.ProjectImage;
+            project.Videos = "https://www.youtube.com/embed/" + project.Videos.Substring(32,11);
+
 
             if (img != null)
             {
@@ -68,6 +70,7 @@ namespace RegenTry3Mvc.Controllers
                 img.CopyTo(new FileStream(filePath, FileMode.Create));
                 project.Photos = uniqueFileName;
             }
+
             projectService.CreateProject(project,Int32.Parse(HttpContext.Request.Cookies["Id"]));
 
             return RedirectToAction(nameof(Index));
