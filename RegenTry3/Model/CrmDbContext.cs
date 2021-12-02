@@ -20,7 +20,7 @@ namespace RegenTry3.Model
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
           //optionsBuilder.UseSqlServer("Data Source=localhost;Initial Catalog=RegenCrm;Integrated Security=True");
-          optionsBuilder.UseSqlServer("Data Source=localhost;Initial Catalog=FinalTest;User ID=sa;Password=admin!@#123");
+          optionsBuilder.UseSqlServer("Data Source=localhost;Initial Catalog=NeaBash;User ID=sa;Password=admin!@#123");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
