@@ -41,8 +41,7 @@ namespace RegenTry3Mvc.Controllers
         public IActionResult Create(Reward reward)
         {
             rewardService.CreateReward(reward, Int32.Parse(HttpContext.Request.Cookies["ProjectId"]));
-            return RedirectToAction("Index", "Project", null);
+            return RedirectToAction("CreatorIndex", "Project", null);
         }
-
     }
 }

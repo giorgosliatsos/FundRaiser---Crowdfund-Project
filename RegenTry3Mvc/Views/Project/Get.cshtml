@@ -7,6 +7,7 @@
 @model RegenTry3.Model.Project
 
 
+
 <div class="d-flex justify-content-center">
     <h1> Project @Model.Title</h1>
 </div>
@@ -40,20 +41,20 @@
 
     <tr><td><b>Rewards</b></td>   <td>@Model.Rewards</td></tr>
 
-    @*<table class="table">
+  @*  <table class="table">
             <thead>
                 <tr>
                     <th>Reward</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach (var reward in Model.Rewards)
+                @foreach (var project in Model.Rewards)
                 {
 
                 <tr>
-                    <td> @reward.Title </td>
-                    <td> @reward.Description </td>
-                    <td> @reward.Price  &euro; </td>
+                    <td> @project.Title </td>
+                    <td> @project.Description </td>
+                    <td> @project.Price  &euro; </td>
                 </tr>
                 }
             </tbody>

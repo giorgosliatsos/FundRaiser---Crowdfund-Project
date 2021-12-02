@@ -65,6 +65,8 @@ namespace RegenTry3.Service
 
 
             reward.Project = _db.Projects.Find(projectId);
+            
+            //reward.Project.Rewards.Append(reward);
 
             _db.Rewards.Add(reward);
             try { _db.SaveChanges(); }

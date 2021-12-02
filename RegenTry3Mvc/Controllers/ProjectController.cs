@@ -35,7 +35,7 @@ namespace RegenTry3Mvc.Controllers
 
             int categoryId = 0;
             if (formCollection["category"].Count() > 0) categoryId = Int32.Parse(formCollection["category"].ToString());
-            List<Project> projects = projectService.ReadProjectByCategory(categoryId, Int32.Parse(HttpContext.Request.Cookies["Id"])).Data;
+            List<Project> projects = projectService.ReadProjectByCategory(categoryId).Data;
             return View(projects);
         }
 
@@ -86,7 +86,7 @@ namespace RegenTry3Mvc.Controllers
 
             projectService.CreateProject(project,Int32.Parse(HttpContext.Request.Cookies["Id"]));
 
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(CreatorIndex));
         }
 
         private string GetUniqueFileName(string fileName)
@@ -101,7 +101,7 @@ namespace RegenTry3Mvc.Controllers
         public IActionResult Delete(int id)
         {
             projectService.DeleteProject(id);
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(CreatorIndex));
         }
 
 
@@ -114,10 +114,7 @@ namespace RegenTry3Mvc.Controllers
         public IActionResult UpdatePost(int id, string newPost)
         {
             projectService.UpdatePost(id, newPost);
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(CreatorIndex));
         }
-
-
-
     }
 }
