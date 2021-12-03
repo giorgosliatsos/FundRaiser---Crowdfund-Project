@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,7 +18,6 @@ namespace RegenTry3.Model
         public string Videos { get; set; }
 
         public string Posts { get; set; }
-
         public List<Reward> Rewards { get; set; }
 
         public List<Backer> Backers { get; set; }

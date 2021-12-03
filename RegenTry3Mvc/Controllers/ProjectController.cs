@@ -72,7 +72,7 @@ namespace RegenTry3Mvc.Controllers
         {
             Project project = projectImVi.Project;
             var img = projectImVi.ProjectImage;
-            project.Videos = "https://www.youtube.com/embed/" + project.Videos.Substring(32,11);
+            if (project.Videos != null) project.Videos = "https://www.youtube.com/embed/" + project.Videos.Substring(32,11);
 
 
             if (img != null)
@@ -105,15 +105,30 @@ namespace RegenTry3Mvc.Controllers
         }
 
 
-        public IActionResult UpdatePost(int id)
-        {
-              return View();
-        }
-
         [HttpPost]
         public IActionResult UpdatePost(int id, string newPost)
         {
             projectService.UpdatePost(id, newPost);
+            return RedirectToAction(nameof(CreatorIndex));
+        }
+
+        public IActionResult Update(int id)
+        {
+            HttpContext.Response.Cookies.Append("ProjectId",id.ToString());
+            return RedirectToAction(nameof(UpdateProject));
+        }
+
+
+        public IActionResult UpdateProject()
+        {
+            return View();
+        }
+        
+        [HttpPost]
+        public IActionResult UpdateProject(Project project)
+        {
+            if (project.Videos != null) project.Videos = "https://www.youtube.com/embed/" + project.Videos.Substring(32, 11);
+            projectService.UpdateProject(int.Parse(HttpContext.Request.Cookies["ProjectId"]), project);
             return RedirectToAction(nameof(CreatorIndex));
         }
     }

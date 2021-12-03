@@ -113,30 +113,23 @@ namespace RegenTry3.Service
         {
             if (categoryId == 0) return ReadProject();
             else return new ApiResponse<List<Project>>()
-                {
-                    Data = _db.Projects.Where(item => (int)item.Category == categoryId).ToList(),
-                    Description = "",
-                    StatusCode = 0
-                };
-            
+            {
+                Data = _db.Projects.Where(item => (int)item.Category == categoryId).ToList(),
+                Description = "",
+                StatusCode = 0
+            };
+
         }
 
         public ApiResponse<Project> UpdateProject(int projectId, Project project)
         {
             var dbProject = _db.Projects.Find(projectId);
             if (dbProject == null) throw new KeyNotFoundException();
-            dbProject.Title = project.Title;
-            dbProject.Description = project.Description;
-            dbProject.Videos = project.Videos;
-            dbProject.Photos = project.Photos;
-            dbProject.Posts = project.Posts;
-            dbProject.Rewards = project.Rewards;
-            dbProject.Backers = project.Backers;
-            dbProject.MoneyGoal = project.MoneyGoal;
-            dbProject.Creator = project.Creator;
-            dbProject.BackerProjects = project.BackerProjects;
-
-
+            if (dbProject.Title != "") dbProject.Title = project.Title;
+            if (dbProject.Description != "") dbProject.Description = project.Description;
+            if (dbProject.Videos != "") dbProject.Videos = project.Videos;
+            if (dbProject.MoneyGoal != 0) dbProject.MoneyGoal = project.MoneyGoal;
+           
             _db.SaveChanges();
             return new ApiResponse<Project>()
             {
