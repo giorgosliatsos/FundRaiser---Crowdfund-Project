@@ -17,11 +17,13 @@ namespace RegenTry3Mvc.Controllers
     {
 
         private readonly IProjectService projectService;
+        private readonly IRewardService rewardService;
         private readonly IHostEnvironment hostEnvironment;
 
-        public ProjectController(IProjectService projectService, IHostEnvironment hostEnvironment)
+        public ProjectController(IProjectService projectService, IRewardService rewardService, IHostEnvironment hostEnvironment)
         {
             this.projectService = projectService;
+            this.rewardService = rewardService;
             this.hostEnvironment = hostEnvironment;
         }
 
@@ -58,7 +60,12 @@ namespace RegenTry3Mvc.Controllers
             Project project = projectService.ReadProject(id).Data;
             if (project == null) return NotFound();
             HttpContext.Response.Cookies.Append("ProjectId", id.ToString());
-            return View(project);
+
+            List<Reward> rewards = rewardService.FindProjectRewards(id).Data;
+            ProjectReward projectReward = new ProjectReward(project,rewards);
+            
+
+            return View(projectReward);
         }
 
         public IActionResult Create()

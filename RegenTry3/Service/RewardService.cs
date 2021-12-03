@@ -106,6 +106,28 @@ namespace RegenTry3.Service
             }
         }
 
+        public ApiResponse<List<Reward>> FindProjectRewards(int projectId)
+        {
+            if (projectId!=0)
+            {
+                return new ApiResponse<List<Reward>>()
+                {
+                    Data = _db.Rewards.Where(reward=>reward.Project.Id == projectId).ToList(),
+                    Description = "Reward Found",
+                    StatusCode = 0
+                };
+            }
+            else
+            {
+                return new ApiResponse<List<Reward>>()
+                {
+                    Data = null,
+                    Description = "Project not Found",
+                    StatusCode = 1
+                };
+            }
+        }
+
         public ApiResponse<Reward> ReadReward(int rewardId)
         {
             if (_db.Rewards.Find(rewardId) != null)

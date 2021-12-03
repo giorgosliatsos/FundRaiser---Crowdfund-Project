@@ -12,6 +12,8 @@ namespace RegenTry3.Service
     {
         public ApiResponse<Reward> CreateReward(Reward reward);
 
+        public ApiResponse<List<Reward>> FindProjectRewards(int projectId);
+
         public ApiResponse<Reward> CreateReward(Reward reward, int projectId);
         public ApiResponse<Reward> ReadReward(int rewardId);
 
