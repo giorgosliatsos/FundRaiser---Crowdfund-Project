@@ -29,8 +29,18 @@
                 <option value=5>GAMES</option>
                 <option value=6>MUSIC</option>
             </select>
-            <input class="btn btn-success btn-sm mb-2" type="submit" value="View"  />
+            <input class="btn btn-success btn-sm mb-2" type="submit" value="View" />
+
+
         }
+    </div>
+
+    <div>
+        <form action="/Project/BackerIndex">
+            or Search by Name:
+            <input type="text" placeholder="Type your Text here" name="search">
+            <button type="submit"><i class="fa fa-search"> </i>Search</button>
+        </form>
     </div>
 
 
@@ -50,39 +60,39 @@
             @foreach (var project in Model)
             {
 
-            <tr>
-                <td> <a href="/project/get/@project.Id" data-toogles="tooltip" title="View Project"> @project.Title</a> </td>
-                <td>   @project.Description  </td>
-                <td>   @project.Category  </td>
-                @* @if (project.Photos != null)
-        {
-            <td>   @project.Photos  </td>
-        }*@
+                <tr>
+                    <td> <a href="/project/get/@project.Id" data-toogles="tooltip" title="View Project"> @project.Title</a> </td>
+                    <td>   @project.Description  </td>
+                    <td>   @project.Category  </td>
+                    @* @if (project.Photos != null)
+                        {
+                            <td>   @project.Photos  </td>
+                        }*@
 
-                <td> @project.Posts</td>
-                @if (project.Photos != null)
-                {
-                    <td>  <img src="/images/@project.Photos" title="Project image" width="100px" height="100px" /> </td>
-                }
+                    <td> @project.Posts</td>
+                    @if (project.Photos != null)
+                    {
+                        <td>  <img src="/images/@project.Photos" title="Project image" width="100px" height="100px" /> </td>
+                    }
 
-                @if (project.Photos == null)
-                {
-                    <td style="padding-right: 10px"> No Photos  </td>
-                }
-                @*   @if (project.Photos == null)
-        {
-            <td style="padding-right: 10px">   </td>
-        }*@
-                @if (project.Videos == null)
-                {
-                    <td style="padding-right: 10px"> No Videos  </td>
-                }
-                @if (project.Videos != null)
-                {
-                    <td> <iframe width="180" height="100" src=@project.Videos title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> </td>
-                }
+                    @if (project.Photos == null)
+                    {
+                        <td style="padding-right: 10px"> No Photos  </td>
+                    }
+                    @*   @if (project.Photos == null)
+                        {
+                            <td style="padding-right: 10px">   </td>
+                        }*@
+                    @if (project.Videos == null)
+                    {
+                        <td style="padding-right: 10px"> No Videos  </td>
+                    }
+                    @if (project.Videos != null)
+                    {
+                        <td> <iframe width="180" height="100" src=@project.Videos title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> </td>
+                    }
 
-            </tr>
+                </tr>
 
             }
         </tbody>

@@ -35,7 +35,7 @@ namespace RegenTry3Mvc.Controllers
 
             int categoryId = 0;
             if (formCollection["category"].Count() > 0) categoryId = Int32.Parse(formCollection["category"].ToString());
-            List<Project> projects = projectService.ReadProjectByCategory(categoryId).Data;
+            List<Project> projects = projectService.ReadProjectByCategory(categoryId, Request.Query["search"].ToString()).Data;
             return View(projects);
         }
 
@@ -125,9 +125,22 @@ namespace RegenTry3Mvc.Controllers
         }
         
         [HttpPost]
-        public IActionResult UpdateProject(Project project)
+        public IActionResult UpdateProject(ProjectImVi projectImVi)
         {
+            Project project = projectImVi.Project;
+            var img = projectImVi.ProjectImage;
             if (project.Videos != null) project.Videos = "https://www.youtube.com/embed/" + project.Videos.Substring(32, 11);
+
+
+            if (img != null)
+            {
+                var uniqueFileName = GetUniqueFileName(img.FileName);
+                var images = Path.Combine(hostEnvironment.ContentRootPath + "\\wwwroot", "images");
+                var filePath = Path.Combine(images, uniqueFileName);
+                img.CopyTo(new FileStream(filePath, FileMode.Create));
+                project.Photos = uniqueFileName;
+            }
+
             projectService.UpdateProject(int.Parse(HttpContext.Request.Cookies["ProjectId"]), project);
             return RedirectToAction(nameof(CreatorIndex));
         }

@@ -127,9 +127,11 @@ namespace RegenTry3.Service
             if (dbProject == null) throw new KeyNotFoundException();
             if (dbProject.Title != "") dbProject.Title = project.Title;
             if (dbProject.Description != "") dbProject.Description = project.Description;
+            if (dbProject.Posts != "") dbProject.Posts = project.Posts;
+            if (dbProject.Photos != "") dbProject.Photos = project.Photos;
             if (dbProject.Videos != "") dbProject.Videos = project.Videos;
             if (dbProject.MoneyGoal != 0) dbProject.MoneyGoal = project.MoneyGoal;
-           
+
             _db.SaveChanges();
             return new ApiResponse<Project>()
             {
@@ -190,6 +192,41 @@ namespace RegenTry3.Service
                 StatusCode = 0
             };
 
+        }
+
+        public ApiResponse<List<Project>> ReadProjectByCategory(int categoryId, string searchstring)
+        {
+
+            var projectList = ReadProjectByCategory(categoryId);
+            if (searchstring == "")
+            {
+                return new ApiResponse<List<Project>>()
+                {
+                    Data = projectList.Data,
+                    Description = "No Search String",
+                    StatusCode = 1
+                };
+            }
+
+            if (projectList == null)
+            {
+                return new ApiResponse<List<Project>>()
+                {
+                    Data = null,
+                    Description = "Null",
+                    StatusCode = 1
+                };
+            }
+            else
+            {
+                var Data = projectList.Data.Where(project => project.Title.Contains(searchstring));
+                return new ApiResponse<List<Project>>()
+                {
+                    Data = projectList.Data.Where(project => project.Title.Contains(searchstring)).ToList(),
+                    Description = "OK",
+                    StatusCode = 0
+                };
+            }
         }
 
         public ApiResponse<Project> UpdatePost(int projectId, string newPost)

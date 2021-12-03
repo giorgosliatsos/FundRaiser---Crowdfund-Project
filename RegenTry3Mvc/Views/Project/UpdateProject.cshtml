@@ -1,42 +1,46 @@
 ﻿@using RegenTry3.Model
+@model ProjectImVi
 
-    <h1> Update Project</h1>
-    <form asp-action="UpdateProject" enctype="multipart/form-data">
+<h1> Update Project</h1>
+<form asp-action="UpdateProject" enctype="multipart/form-data">
 
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <label>Title:</label>
-                <input type="text" class="form-control" id="email" name="Project.Title" placeholder="E.g.(Unity Project 101)">
-            </div>
-            <div class="form-group col-md-6">
-                <label>Description:</label>
-                <input type="text" class="form-control" id="description" name="Project.Description" placeholder="E.g.(description)">
-            </div>
-        </div>
-
+    <div class="form-row">
         <div class="form-group col-md-6">
-            <label>Post:</label>
-            <input type="text" class="form-control" id="post" name="Project.Posts" placeholder="E.g. Just started">
+            <label>Title:</label>
+            <input type="text" class="form-control" id="email" name="Project.Title" placeholder="E.g.(Unity Project 101)">
         </div>
-
-        <div class="form-group">
-            <label>Category:</label>
-            <select name="Project.Category" class="form-control form-control-sm" placeholder="Category" asp-items="@(Html.GetEnumSelectList<Category>())"></select>
-        </div>
-
         <div class="form-group col-md-6">
-            <label>Video:</label>
-            <input type="text" class="form-control" id="video" name="Project.VIdeos" placeholder="Add video URL">
+            <label>Description:</label>
+            <input type="text" class="form-control" id="description" name="Project.Description" placeholder="E.g.(description)">
         </div>
+    </div>
+
+    <div class="form-group col-md-6">
+        <label>Post:</label>
+        <input type="text" class="form-control" id="post" name="Project.Posts" placeholder="E.g. Just started">
+    </div>
+
+    <dl>
+        <dt>
+            <label asp-for="ProjectImage"></label>
+        </dt>
+        <dd>
+            <input asp-for="ProjectImage" type="file">
+            <span asp-validation-for="ProjectImage"></span>
+        </dd>
+    </dl>
+
+    <div class="form-group col-md-6">
+        <label>Video:</label>
+        <input type="text" class="form-control" id="video" name="Project.Videos" placeholder="Add video URL">
+    </div>
 
 
-        <div class="d-flex justify-content-center">
-            <button type="submit" value="Update Project" class="btn btn-primary mt-2">Update</button>
-        </div>
+    <div class="d-flex justify-content-center">
+        <button type="submit" value="Update Project" class="btn btn-primary mt-2">Update</button>
+    </div>
 
-    </form>
-
-
+</form>
 
 
 
@@ -45,47 +49,49 @@
 
 
 
-    @*<label>
-            Title
-        </label>
-        <div>
-            <input type="text" class="form-control form-control-sm" name="Title" placeholder="Title" />
-        </div>
-
-        <label>
-            Description
-        </label>
-        <div>
-            <input type="text" class="form-control form-control-sm" name="Description" placeholder="Description" />
-        </div>
-
-        <label>
-            Category
-        </label>
-        <div>
-            <select name="Category" class="form-control form-control-sm" placeholder="Category" asp-items="@(Html.GetEnumSelectList<Category>())"></select>
-        </div>
-
-        <label>
-            Photos
-        </label>
-
-        <div>
-            <input type="file" name="Photos" placeholder="Photos" />
-        </div>
-
-        <label>
-            Videos
-        </label>
-        <div>
-            <input type="file" name="Videos" placeholder="Videos" />
-        </div>
 
 
-        <div class="form-group">
-            <input type="submit" value="Create Project" class="btn btn-primary" />
-        </div>*@@*
-        For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-        *@
-        @{
-        }
+@*<label>
+        Title
+    </label>
+    <div>
+        <input type="text" class="form-control form-control-sm" name="Title" placeholder="Title" />
+    </div>
+
+    <label>
+        Description
+    </label>
+    <div>
+        <input type="text" class="form-control form-control-sm" name="Description" placeholder="Description" />
+    </div>
+
+    <label>
+        Category
+    </label>
+    <div>
+        <select name="Category" class="form-control form-control-sm" placeholder="Category" asp-items="@(Html.GetEnumSelectList<Category>())"></select>
+    </div>
+
+    <label>
+        Photos
+    </label>
+
+    <div>
+        <input type="file" name="Photos" placeholder="Photos" />
+    </div>
+
+    <label>
+        Videos
+    </label>
+    <div>
+        <input type="file" name="Videos" placeholder="Videos" />
+    </div>
+
+
+    <div class="form-group">
+        <input type="submit" value="Create Project" class="btn btn-primary" />
+    </div>*@@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+    *@
+    @{
+    }
