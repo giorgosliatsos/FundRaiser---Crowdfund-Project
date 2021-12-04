@@ -1,4 +1,5 @@
-﻿using RegenTry3.dto;
+﻿using Microsoft.EntityFrameworkCore;
+using RegenTry3.dto;
 using RegenTry3.Model;
 using System;
 using System.Collections.Generic;
@@ -114,7 +115,7 @@ namespace RegenTry3.Service
             if (categoryId == 0) return ReadProject();
             else return new ApiResponse<List<Project>>()
             {
-                Data = _db.Projects.Where(item => (int)item.Category == categoryId).ToList(),
+                Data = _db.Projects.Where(item => (int)item.Category == categoryId).Include("Creator").ToList(),
                 Description = "",
                 StatusCode = 0
             };

@@ -111,6 +111,10 @@ namespace RegenTry3Mvc.Controllers
             return RedirectToAction(nameof(CreatorIndex));
         }
 
+        public IActionResult UpdatePost(int id)
+        {
+                return View();   
+        }
 
         [HttpPost]
         public IActionResult UpdatePost(int id, string newPost)
