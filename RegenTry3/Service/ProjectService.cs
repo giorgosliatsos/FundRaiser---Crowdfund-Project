@@ -59,11 +59,8 @@ namespace RegenTry3.Service
             var project = _db.Projects.Find(projectId);
             if (project == null) return new ApiResponse<bool>() { Data = false, Description = "Project was Null", StatusCode = 1 };
 
-            var allrewards = _db.Rewards.ToList();
-            foreach (Reward reward in allrewards)
-            {
-                if (reward.Project.Id == projectId) _db.Rewards.Remove(reward);
-            }
+            var projectRewards = _db.Rewards.Where(reward => reward.Project.Id == projectId).ToList();
+            if (projectRewards != null) foreach(Reward reward in projectRewards)_db.Rewards.Remove(reward);
 
             _db.Projects.Remove(project);
             if (_db.SaveChanges() == 1)
