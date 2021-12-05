@@ -61,8 +61,11 @@
                             <b>@Html.DisplayFor(modelItem => item.Title)</b>
                             @Html.DisplayFor(modelItem => item.Price)
                         </div>
-                        <form asp-action="Get">
-                    
+
+                        
+                          @if (@TempData["Role"].ToString() == "Backer"){<form asp-action="Get">                 
+          
+            
                     @*<div>prepei to value na ginetai iso me item.Price*@
                     <div>
                         <input value="@item.Price" type="hidden" id="value" class="form-control">
@@ -72,19 +75,20 @@
                             <input type="submit" value="Select reward" class="btn btn-primary" />
                         </div>
                         
-                        </form>
+                        </form>}
+                        
+                        
                     </div>
                 }
             </div>
         </td>
     </tr>
-
-    <tr>
-        <td><b>Fund the Project</b></td>
-        <td>
             @if (@TempData["Role"].ToString() == "Backer")
 
             {
+    <tr>
+        <td><b>Fund the Project</b></td>
+        <td>
                 <form asp-action="Get">
                     <div>
                         <input name="value" id="value" class="form-control">
@@ -95,9 +99,9 @@
                      
                 </form>
 
-            }
         </td>
     </tr>
+            }
     @*<table class="table">
         <thead>
         <tr>
