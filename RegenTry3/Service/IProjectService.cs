@@ -30,5 +30,10 @@ namespace RegenTry3.Service
         public ApiResponse<Project> UpdateProjectReward(int projectId, Reward reward);
 
         public ApiResponse<bool> DeleteProject(int projectId);
+
+        public ApiResponse<decimal> GetProjectMoney(int projectId);
+
+        public ApiResponse<Project> UpdateProjectMoney(int projectId, decimal money);
+
     }
 }

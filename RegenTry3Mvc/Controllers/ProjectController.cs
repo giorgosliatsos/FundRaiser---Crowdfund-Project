@@ -68,6 +68,16 @@ namespace RegenTry3Mvc.Controllers
             return View(projectReward);
         }
 
+
+        [HttpPost]
+        public IActionResult Get(int id,string value)
+        {
+            Console.WriteLine("value ==" + value);
+            projectService.UpdateProjectMoney(id, Convert.ToDecimal(value));
+
+            return RedirectToAction("BackerIndex");
+        }
+
         public IActionResult Create()
         {
             return View();
@@ -155,5 +165,7 @@ namespace RegenTry3Mvc.Controllers
             projectService.UpdateProject(int.Parse(HttpContext.Request.Cookies["ProjectId"]), project);
             return RedirectToAction(nameof(CreatorIndex));
         }
+
+
     }
 }

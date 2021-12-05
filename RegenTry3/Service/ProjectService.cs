@@ -60,7 +60,7 @@ namespace RegenTry3.Service
             if (project == null) return new ApiResponse<bool>() { Data = false, Description = "Project was Null", StatusCode = 1 };
 
             var projectRewards = _db.Rewards.Where(reward => reward.Project.Id == projectId).ToList();
-            if (projectRewards != null) foreach(Reward reward in projectRewards)_db.Rewards.Remove(reward);
+            if (projectRewards != null) foreach (Reward reward in projectRewards) _db.Rewards.Remove(reward);
 
             _db.Projects.Remove(project);
             if (_db.SaveChanges() == 1)
@@ -236,14 +236,57 @@ namespace RegenTry3.Service
                 updatedProject.Posts = newPost;
                 _db.SaveChanges();
             }
-                
+
             return new ApiResponse<Project>()
             {
                 Data = updatedProject,
                 Description = "Post updated",
                 StatusCode = 0
             };
-            
+
+        }
+
+        public ApiResponse<decimal> GetProjectMoney(int projectId)
+        {
+
+            if (_db.Projects.Find(projectId) != null)
+            {
+                return new ApiResponse<decimal>()
+                {
+                    Data = _db.Projects.Find(projectId).MoneyGoal,
+                    Description = "Project money returned",
+                    StatusCode = 0
+                };
+            }
+            else
+            {
+                return new ApiResponse<decimal>()
+                {
+                    Data = -1.0m,
+                    Description = "Project not Found",
+                    StatusCode = 1
+                };
+            }
+
+        }
+
+        public ApiResponse<Project> UpdateProjectMoney(int projectId, decimal money)
+        {
+            var project = _db.Projects.Find(projectId);
+
+            if (money > 0 || project != null)
+            {
+                project.MoneyGoal += money;
+                _db.SaveChanges();
+            }
+
+            return new ApiResponse<Project>()
+            {
+                Data = project,
+                Description = "Money updated",
+                StatusCode = 0
+            };
+
         }
     }
 }
