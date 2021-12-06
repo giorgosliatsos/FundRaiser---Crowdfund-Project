@@ -62,6 +62,9 @@ namespace RegenTry3.Service
             var projectRewards = _db.Rewards.Where(reward => reward.Project.Id == projectId).ToList();
             if (projectRewards != null) foreach (Reward reward in projectRewards) _db.Rewards.Remove(reward);
 
+            var backerProjects = _db.BackerProjects.Where(backerProject => backerProject.Project.Id == projectId).ToList();
+            if (backerProjects != null) foreach (BackerProject backerProject in backerProjects) _db.BackerProjects.Remove(backerProject);
+
             _db.Projects.Remove(project);
             if (_db.SaveChanges() == 1)
             {

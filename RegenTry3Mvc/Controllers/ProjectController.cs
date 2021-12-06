@@ -39,7 +39,7 @@ namespace RegenTry3Mvc.Controllers
             if (formCollection["category"].Count() > 0) categoryId = Int32.Parse(formCollection["category"].ToString());
             List<Project> projects = projectService.ReadProjectByCategory(categoryId, Request.Query["search"].ToString()).Data;
             projects = backerProjectService.ReadBackerProjects(int.Parse(HttpContext.Request.Cookies["Id"]), projects).Data;
-            return View("BackerIndex",projects);
+            return View(projects);
         }
         public IActionResult BackerIndex(IFormCollection formCollection)
         {
