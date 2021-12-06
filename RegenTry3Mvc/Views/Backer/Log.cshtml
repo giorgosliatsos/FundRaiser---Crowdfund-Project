@@ -1,13 +1,97 @@
 ﻿@using RegenTry3.Model
 
-<h1> Who are you? </h1>
+@*<h1> Who are you? </h1>
 
-<form asp-action="Log">
-<div>
-    <input type="text" class="form-control form-control-sm" name="Username" placeholder="Username" />
-</div>
+    <form asp-action="Log">
+        <div>
+            <input type="text" class="form-control form-control-sm" name="Username" placeholder="Username" />
+        </div>
 
-<div class="d-flex justify-content-center">
-    <button type="submit" class="btn btn-primary">Go!</button>
-</div>
-</form>
+        <div class="d-flex justify-content-center">
+            <button type="submit" class="btn btn-primary">Go!</button>
+        </div>
+    </form>
+    </div>*@
+
+<title> Welcome Backer! </title>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<head>
+    <script src="jquery/jquery.min.js"></script>
+    <!---- jquery link local dont forget to place this in first than other script or link or may not work ---->
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!---- boostrap.min link local ----->
+
+    <link rel="stylesheet" href="css/style.css">
+    <!---- boostrap.min link local ----->
+
+    <script src="js/bootstrap.min.js"></script>
+    <!---- Boostrap js link local ----->
+
+    <link rel="icon" href="images/icon.png" type="image/x-icon" />
+    <!---- Icon link local ----->
+
+    <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+    <!---- Font awesom link local ----->
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="container">
+            <h2 class="text-center" id="title">Welcome Backer</h2>
+
+            <hr>
+            <div class="row">
+                <div class="col-md-5">
+                    <form asp-action="Log">
+                        <fieldset>
+                            <p class="text-uppercase pull-center"> SIGN UP:</p>
+
+                            <div class="form-group">
+                                <input type="Text" name="Backer.Username" id="Username" class="form-control input-lg" placeholder="Username">
+                            </div>
+                            <div class="form-group">
+                                <input type="Text" name="Backer.FirstName" id="First Name" class="form-control input-lg" placeholder="First Name">
+                            </div>
+                            <div class="form-group">
+                                <input type="Text" name="Backer.LastName" id="Last Name" class="form-control input-lg" placeholder="Last Name">
+                            </div>
+                            <div class="form-group">
+                                <input type="date" name="Backer.DateOfBirth" id="Date of Birth" class="form-control input-lg" placeholder="Date of Birth">
+                            </div>
+
+
+                            <div>
+                                <input type="submit" class="btn btn-lg btn-primary" value="Register">
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+
+                <div class="col-md-2">
+                    <!-------null------>
+                </div>
+
+                <div class="col-md-5">
+                    <form asp-action="Log">
+                        <fieldset>
+                            <p class="text-uppercase"> Login using your account: </p>
+
+                            <div class="form-group">
+                                <input type="text" name="Backer.Username" id="Username" class="form-control input-lg" placeholder="Username">
+                            </div>
+
+                            <div>
+                                <input type="submit" class="btn btn-lg btn-primary" value="Sign In">
+                            </div>
+
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
