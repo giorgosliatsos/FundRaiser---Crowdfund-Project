@@ -22,6 +22,7 @@ namespace RegenTry3.Model
             optionsBuilder.UseSqlServer("Data Source=localhost;Initial Catalog=RegenCrm;Integrated Security=True");
             // optionsBuilder.UseSqlServer("Data Source=LAPTOP-17RK5KIM\\SQLSERVER2019;Initial Catalog=RegenCrm;Integrated Security=True");
             // optionsBuilder.UseSqlServer("Data Source=localhost;Initial Catalog=RegenDB;User ID=sa;Password=admin!@#123");
+            //azure
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
