@@ -41,6 +41,29 @@
             <input type="text" placeholder="Type your Text here" name="search">
             <button type="submit"><i class="fa fa-search"> </i>Search</button>
         </form>
+
+        @*<div class="vertical-center"> Show: </div>
+
+        <form action="/Project/BackerOwnedIndex" method="post" onchange=" ">
+            <dp>All Projects</dp> <input type="range" id="vol" default="0" name="vol" min="0" max="1" step="1">    <dp>My Projects</dp>
+
+        </form>*@
+
+        @*<select onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);">
+            <option value="">Select...</option>
+            <option value="/Project/BackerIndex">All Projects</option>
+            <option value="/Project/BackerOwnedIndex">My projecs</option>
+        </select>*@
+    <div>
+        <a href="/Project/BackerIndex">
+            <button class="btn btn-success btn-sm mb-2">All Projects</button>
+        </a>
+    
+        <a href="/Project/BackerOwnedIndex">
+            <button class="btn btn-success btn-sm mb-2">My Projects</button>
+        </a>
+    </div>
+
     </div>
 
 

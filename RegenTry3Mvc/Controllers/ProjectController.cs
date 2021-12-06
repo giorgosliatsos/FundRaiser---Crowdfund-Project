@@ -18,16 +18,29 @@ namespace RegenTry3Mvc.Controllers
 
         private readonly IProjectService projectService;
         private readonly IRewardService rewardService;
+        private readonly IBackerProjectService backerProjectService;
         private readonly IHostEnvironment hostEnvironment;
 
-        public ProjectController(IProjectService projectService, IRewardService rewardService, IHostEnvironment hostEnvironment)
+        public ProjectController(IProjectService projectService, IRewardService rewardService, IBackerProjectService backerProjectService, IHostEnvironment hostEnvironment)
         {
             this.projectService = projectService;
             this.rewardService = rewardService;
+            this.backerProjectService = backerProjectService;
             this.hostEnvironment = hostEnvironment;
         }
+        public IActionResult BackerOwnedIndex(IFormCollection formCollection)
+        {
 
+            TempData["Username"] = HttpContext.Request.Cookies["Username"];
+            TempData["Id"] = HttpContext.Request.Cookies["Id"];
+            TempData["Role"] = HttpContext.Request.Cookies["Role"];
 
+            int categoryId = 0;
+            if (formCollection["category"].Count() > 0) categoryId = Int32.Parse(formCollection["category"].ToString());
+            List<Project> projects = projectService.ReadProjectByCategory(categoryId, Request.Query["search"].ToString()).Data;
+            projects = backerProjectService.ReadBackerProjects(int.Parse(HttpContext.Request.Cookies["Id"]), projects).Data;
+            return View("BackerIndex",projects);
+        }
         public IActionResult BackerIndex(IFormCollection formCollection)
         {
             
@@ -68,13 +81,20 @@ namespace RegenTry3Mvc.Controllers
             return View(projectReward);
         }
 
+        [HttpPost]
+        public IActionResult GetReward(int id, string value)
+        {
+            
+            projectService.UpdateProjectMoney(id, Convert.ToDecimal(value));
+
+            return RedirectToAction("BackerIndex");
+        }
 
         [HttpPost]
         public IActionResult Get(int id,string value)
         {
-            Console.WriteLine("value ==" + value);
             projectService.UpdateProjectMoney(id, Convert.ToDecimal(value));
-
+            backerProjectService.AddBackerProject(id, int.Parse(HttpContext.Request.Cookies["Id"].ToString()));
             return RedirectToAction("BackerIndex");
         }
 

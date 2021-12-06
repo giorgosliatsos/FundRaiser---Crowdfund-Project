@@ -55,30 +55,32 @@
             <div class="d-flex justify-content-center">
                 @foreach (var item in Model.Rewards)
                 {
-                    <div class="card mr-2" style="width: 18rem;">
-                        <img class="card-img-top  " src="https://completenetworkgear.com/pub/static/version1625654110/frontend/Magento/luma/en_US/Mageplaza_RewardPoints/images/default/customers-get-reward-points.png" width="200" height="210">
-                        <div class="card-body">
-                            <b>@Html.DisplayFor(modelItem => item.Title)</b>
-                            @Html.DisplayFor(modelItem => item.Price)
-                        </div>
+                <div class="card mr-2" style="width: 18rem;">
+                    <img class="card-img-top  " src="https://completenetworkgear.com/pub/static/version1625654110/frontend/Magento/luma/en_US/Mageplaza_RewardPoints/images/default/customers-get-reward-points.png" width="200" height="210">
+                    <div class="card-body">
+                        <b>@Html.DisplayFor(modelItem => item.Title)</b>
+                        @Html.DisplayFor(modelItem => item.Price) &euro;
+                    </div>
 
-                        
-                          @if (@TempData["Role"].ToString() == "Backer"){<form asp-action="Get">                 
-          
-            
-                    @*<div>prepei to value na ginetai iso me item.Price*@
-                    <div>
-                        <input name="@item.Price" type="hidden" id="value" class="form-control">
-                    </div>
-                    
-                        <div class="form-group">
-                            <input type="submit" value="Select reward" class="btn btn-primary" />
-                        </div>
-                        
+
+                    @if (@TempData["Role"].ToString() == "Backer")
+                    {
+                        <form asp-action="Get">
+
+
+                            @*<div>prepei to value na ginetai iso me item.Price*@
+                            <div>
+                                <input name="value" type="hidden" id="value" class="form-control" value="@item.Price">
+                            </div>
+
+                            <div class="form-group">
+                                <input type="submit" value="Buy reward" class="btn btn-primary" />
+                            </div>
+
                         </form>}
-                        
-                        
-                    </div>
+
+
+                </div>
                 }
             </div>
         </td>
@@ -94,7 +96,7 @@
                         <input name="value" id="value" class="form-control">
                     </div>
                     <td><div class="form-group">
-                        <input type="submit" value="Fund" class="btn btn-primary" />
+                        <input type="submit" value="Custom Fund" class="btn btn-primary" />
                         </div></td>
                      
                 </form>

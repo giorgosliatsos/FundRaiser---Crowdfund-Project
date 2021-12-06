@@ -30,7 +30,7 @@ namespace RegenTry3Mvc
             services.AddScoped<IProjectService, ProjectService>();
             services.AddScoped<ICreatorService, CreatorService>();
             services.AddScoped<IBackerService, BackerService>();
-
+            services.AddScoped<IBackerProjectService, BackerProjectService>();
             services.AddControllersWithViews();
         }
 
