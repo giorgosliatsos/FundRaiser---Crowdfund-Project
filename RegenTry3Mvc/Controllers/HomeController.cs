@@ -20,6 +20,9 @@ namespace RegenTry3Mvc.Controllers
 
         public IActionResult Index()
         {
+            HttpContext.Response.Cookies.Append("Id", "");
+            HttpContext.Response.Cookies.Append("Username", "");
+            HttpContext.Response.Cookies.Append("Role", "");
             return View();
         }
         public IActionResult Contact()
