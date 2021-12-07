@@ -23,6 +23,12 @@ namespace RegenTry3Mvc.Controllers
             return RedirectToAction(nameof(Log));
         }
 
+        //GET:
+        public IActionResult Profile()
+        {
+            return View();
+        }
+
         public IActionResult Log()
         {
             return View();

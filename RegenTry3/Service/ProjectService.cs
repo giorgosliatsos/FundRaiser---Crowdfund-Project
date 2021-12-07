@@ -104,7 +104,7 @@ namespace RegenTry3.Service
         {
             return new ApiResponse<List<Project>>()
             {
-                Data = _db.Projects.ToList(),
+                Data = _db.Projects.OrderByDescending(project=>project.MoneyGoal).ToList(),
                 Description = "",
                 StatusCode = 0
             };
@@ -115,7 +115,7 @@ namespace RegenTry3.Service
             if (categoryId == 0) return ReadProject();
             else return new ApiResponse<List<Project>>()
             {
-                Data = _db.Projects.Where(item => (int)item.Category == categoryId).Include("Creator").ToList(),
+                Data = _db.Projects.Where(item => (int)item.Category == categoryId).OrderByDescending(project => project.MoneyGoal).Include("Creator").ToList(),
                 Description = "",
                 StatusCode = 0
             };
@@ -131,7 +131,6 @@ namespace RegenTry3.Service
             if (dbProject.Posts != "") dbProject.Posts = project.Posts;
             if (dbProject.Photos != "") dbProject.Photos = project.Photos;
             if (dbProject.Videos != "") dbProject.Videos = project.Videos;
-            if (dbProject.MoneyGoal != 0) dbProject.MoneyGoal = project.MoneyGoal;
 
             _db.SaveChanges();
             return new ApiResponse<Project>()
@@ -171,7 +170,7 @@ namespace RegenTry3.Service
         public ApiResponse<List<Project>> ReadProjectByCategory(int categoryId, int creatorId)
         {
 
-            var creatorsProjects = _db.Projects.Where(cr => (int)cr.Creator.Id == creatorId).ToList();
+            var creatorsProjects = _db.Projects.Where(cr => (int)cr.Creator.Id == creatorId).OrderByDescending(project => project.MoneyGoal).ToList();
             if (creatorsProjects == null) return new ApiResponse<List<Project>>()
             {
                 Data = null,
@@ -188,7 +187,7 @@ namespace RegenTry3.Service
             };
             else return new ApiResponse<List<Project>>()
             {
-                Data = creatorsProjects.Where(item => (int)item.Category == categoryId).ToList(),
+                Data = creatorsProjects.Where(item => (int)item.Category == categoryId).OrderByDescending(project => project.MoneyGoal).ToList(),
                 Description = "",
                 StatusCode = 0
             };

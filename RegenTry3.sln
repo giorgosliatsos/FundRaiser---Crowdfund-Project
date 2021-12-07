@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31729.503
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RegenTry3", "RegenTry3\RegenTry3.csproj", "{891440DC-36FC-4B95-86D2-91A1ACD8C231}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RegenTry3", "RegenTry3\RegenTry3.csproj", "{891440DC-36FC-4B95-86D2-91A1ACD8C231}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RegenTry3Mvc", "RegenTry3Mvc\RegenTry3Mvc.csproj", "{59D7FD32-13D7-4A4A-854B-CE05738D1D73}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RegenTry3Mvc", "RegenTry3Mvc\RegenTry3Mvc.csproj", "{59D7FD32-13D7-4A4A-854B-CE05738D1D73}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RegenTry3Api", "RegenTry3Api\RegenTry3Api.csproj", "{0C9E85C6-EFD9-40B9-9DB6-1A5D90E36D1C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{59D7FD32-13D7-4A4A-854B-CE05738D1D73}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{59D7FD32-13D7-4A4A-854B-CE05738D1D73}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{59D7FD32-13D7-4A4A-854B-CE05738D1D73}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0C9E85C6-EFD9-40B9-9DB6-1A5D90E36D1C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C9E85C6-EFD9-40B9-9DB6-1A5D90E36D1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C9E85C6-EFD9-40B9-9DB6-1A5D90E36D1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C9E85C6-EFD9-40B9-9DB6-1A5D90E36D1C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
