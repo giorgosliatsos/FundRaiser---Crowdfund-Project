@@ -12,32 +12,42 @@
     <h1> Project @Model.Project.Title</h1>
 </div>
 
+@*<td>@Model.Project.Posts</td>
 @if (@TempData["Role"].ToString() == "Creator")
 {
-    <div class="m-3">
+    <td><a href="/project/updatepost/@Model.Project.Id" data-toogles="tooltip" title="Update Post" class="btn btn-info" role="button">Update post</a></td>
+}*@
+
+
+@if (@TempData["Role"].ToString() == "Creator")
+{
+<div class="row">
+    <div class="m-3 column-md-6">
         <a href="/Reward/Create/?ProjectId=@Model.Project.Id" class="btn btn-info" role="button">Add Reward</a>
     </div>
+
+    <div class="m-3 column-md-6">
+        <a href="/project/updatepost/@Model.Project.Id" data-toogles="tooltip" title="Update Post" class="btn btn-success" role="button">Update post</a>
+    </div>
+</div>
 }
+
+
 
 <table class="table">
     <tr><td><b>Description</b></td> <td>@Model.Project.Description</td></tr>
-    <tr>
-        <td><b>Post</b></td>
-        <td>@Model.Project.Posts</td>
-        @if (@TempData["Role"].ToString() == "Creator")
-        {
-            <td><a href="/project/updatepost/@Model.Project.Id" data-toogles="tooltip" title="Update Post" class="btn btn-info" role="button">Update post</a></td>
-        }
-    </tr>
+    <tr><td><b>Post</b></td></tr>
 
     <tr>
-        <td><b>Photo</b></td>
-        @if (@Model.Project.Photos != null)
-        {
+        <td>
+            <b>Photo</b>
+            @if (@Model.Project.Photos != null)
+            {
             <td>  <img src="/images/@Model.Project.Photos" title="Project image" width="315" height="315" /> </td>
         }
-
-    </tr>
+        </td>
+        
+     </tr>
 
     <tr>
         <td><b>Video</b></td>
@@ -55,75 +65,58 @@
             <div class="d-flex justify-content-center">
                 @foreach (var item in Model.Rewards)
                 {
-                <div class="card mr-2" style="width: 18rem;">
-                    <img class="card-img-top  " src="https://completenetworkgear.com/pub/static/version1625654110/frontend/Magento/luma/en_US/Mageplaza_RewardPoints/images/default/customers-get-reward-points.png" width="200" height="210">
-                    <div class="card-body">
-                        <b>@Html.DisplayFor(modelItem => item.Title)</b>
-                        @Html.DisplayFor(modelItem => item.Price) &euro;
+                    <div class="card mr-2" style="width: 18rem;">
+                        <img class="card-img-top  " src="https://completenetworkgear.com/pub/static/version1625654110/frontend/Magento/luma/en_US/Mageplaza_RewardPoints/images/default/customers-get-reward-points.png" width="200" height="210">
+                        <div class="card-body">
+                            <b>@Html.DisplayFor(modelItem => item.Title)</b>
+                            @Html.DisplayFor(modelItem => item.Price) &euro;
+                        </div>
+
+
+                        @if (@TempData["Role"].ToString() == "Backer")
+                        {
+                            <form asp-action="Get">
+
+
+                                @*<div>prepei to value na ginetai iso me item.Price*@
+                                <div>
+                                    <input name="value" type="hidden" id="value" class="form-control" value="@item.Price">
+                                </div>
+
+                                <div class="form-group">
+                                    <input type="submit" value="Buy reward" class="btn btn-primary" />
+                                </div>
+
+                            </form>}
+
+
                     </div>
-
-
-                    @if (@TempData["Role"].ToString() == "Backer")
-                    {
-                        <form asp-action="Get">
-
-
-                            @*<div>prepei to value na ginetai iso me item.Price*@
-                            <div>
-                                <input name="value" type="hidden" id="value" class="form-control" value="@item.Price">
-                            </div>
-
-                            <div class="form-group">
-                                <input type="submit" value="Buy reward" class="btn btn-primary" />
-                            </div>
-
-                        </form>}
-
-
-                </div>
                 }
             </div>
         </td>
     </tr>
-            @if (@TempData["Role"].ToString() == "Backer")
+    @if (@TempData["Role"].ToString() == "Backer")
 
-            {
-    <tr>
-        <td><b>Fund the Project</b></td>
-        <td>
+    {
+        <tr>
+            <td><b>Fund the Project</b></td>
+            <td>
                 <form asp-action="Get">
                     <div>
                         <input name="value" id="value" class="form-control">
                     </div>
-                    <td><div class="form-group">
-                        <input type="submit" value="Custom Fund" class="btn btn-primary" />
-                        </div></td>
-                     
-                </form>
+            <td>
+                <div class="form-group">
+                    <input type="submit" value="Custom Fund" class="btn btn-primary" />
+                </div>
+            </td>
 
-        </td>
-    </tr>
-            }
-    @*<table class="table">
-        <thead>
-        <tr>
-        <th>Reward</th>
+            </form>
+
+            </td>
         </tr>
-        </thead>
-        <tbody>
-        @foreach (var reward in Model.Rewards)
-        {
-
-        <tr>
-        <td> @reward.Title </td>
-        <td> @reward.Description </td>
-        <td> @reward.Price  &euro; </td>
-        </tr>
-        }
-        </tbody>
-        </table>*@
-
-
+    }
+    
 </table>
 
 
