@@ -41,7 +41,7 @@ namespace RegenTry3Api
                 options.AddPolicy(name: MyAllowSpecificOrigins,
                                   builder =>
                                   {
-                                      builder.WithOrigins("https://localhost/44345")
+                                      builder.WithOrigins("https://localhost:44345")
                                       .AllowAnyHeader();
                                   });
             });
