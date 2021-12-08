@@ -21,12 +21,6 @@ namespace RegenTry3Api.Controllers
             this.backerService = backerService;
         }
 
-        [HttpGet("/ping")]
-        public string Ping()
-        {
-            return "it works";
-        }
-
         // GET: api/<CustomerController>
         [HttpGet]
         public IEnumerable<Backer> Get()

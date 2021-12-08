@@ -1,0 +1,32 @@
+﻿@if (@TempData["Role"].ToString() == "")
+{
+    <h1>User Profile Not Available</h1>
+
+    <d><i>No user logged in yet.</i></d>
+}
+@if (@TempData["Role"].ToString() != "")
+{
+    <h1>User Profile</h1>
+    
+    <script type="text/javascript" src="/js/site.js"></script>
+    <script language="javascript">
+        loadUser();
+    </script>
+    
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Date of Birth</th>
+            </tr>
+        </thead>
+
+    </table>
+
+    <div id="Results"></div>
+
+}
+
+

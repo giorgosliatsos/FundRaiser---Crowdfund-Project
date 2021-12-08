@@ -21,12 +21,6 @@ namespace RegenTry3Api.Controllers
             this.creatorService = creatorService;
         }
 
-        // GET: api/<CustomerController>
-        [HttpGet]
-        public IEnumerable<Creator> Get()
-        {
-            return creatorService.GetCreator().Data;
-        }
 
 
         // GET: api/CreatorProfile/5
@@ -36,6 +30,9 @@ namespace RegenTry3Api.Controllers
             return creatorService.GetCreator(id).Data;
         }
 
-        
+        // GET: api/CreatorProfile/5
+
+
+
     }
 }

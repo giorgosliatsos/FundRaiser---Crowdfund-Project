@@ -1,16 +1,18 @@
-﻿$(document).ready(function () {
-    if ($("#BackerResults").length != 0) {
-        loadBackers()
-    }
+﻿$(document).ready(function() {
     if ($("#Results").length != 0) {
-        loadCreators()
+        loadUser()
     }
 
 });
 
-function loadCreators() {
+function loadUser() {
 
-    let urlAPI = 'https://localhost:44313/api/creatorprofile/';
+    const urlParams = new URLSearchParams(window.location.search);
+    const role = urlParams.get('role');
+
+    let urlAPI = "https://localhost:44313/api/backerprofile/" + window.location.pathname.split("/").pop();
+    if (role == "Creator") urlAPI = "https://localhost:44313/api/creatorprofile/" + window.location.pathname.split("/").pop();
+     
     let method = 'GET';
 
     $.ajax(
@@ -20,18 +22,18 @@ function loadCreators() {
         })
         .done(result => {
             let resultData = "<table  class='table'>";
-            result.forEach(cretor => resultData += ('<tr>'
-                + '<td>' + cretor.id + '</td>'
+            resultData += ('<tr>'
+                + '<td>' + result.id + '</td>'
                 + '<td>' + "" + '</td>'
-                + '<td>' + cretor.firstName + '</td>'
-                + '<td>' + "" + '</td>'
-                + '<td>' + "" + '</td>'
-                + '<td>' + "" + '</td>'
-                + '<td>' + cretor.lastName + '</td>'
+                + '<td>' + result.firstName + '</td>'
                 + '<td>' + "" + '</td>'
                 + '<td>' + "" + '</td>'
-                + '<td>' + cretor.dateOfBirth + '</td>'
-                + '</tr>'));
+                + '<td>' + "" + '</td>'
+                + '<td>' + result.lastName + '</td>'
+                + '<td>' + "" + '</td>'
+                + '<td>' + "" + '</td>'
+                + '<td>' + result.dateOfBirth + '</td>'
+                + '</tr>');
 
             resultData += '</table>';
             $("#Results").html(resultData);
@@ -42,41 +44,114 @@ function loadCreators() {
             console.log(JSON.stringify(failure));
         });
 }
+//}
 
-function loadBackers() {
+//function loadCreators(id) {
 
-    let urlAPI = 'https://localhost:44313/api/backerprofile/';
-    let method = 'GET';
+//    let urlAPI = 'https://localhost:44313/api/creatorprofile/'+id;
+//    let method = 'GET';
 
-    $.ajax(
-        {
-            url: urlAPI,
-            method: method
-        })
-        .done(result => {
-            let resultData = "<table  class='table'>";
-            result.forEach(backer => resultData += ('<tr>'
-                + '<td>' + backer.id + '</td>'
-                + '<td>' + ""+ '</td>'
-                + '<td>' + backer.firstName + '</td>'
-                + '<td>' + "" + '</td>'
-                + '<td>' + "" + '</td>'
-                + '<td>' + "" + '</td>'
-                + '<td>' + backer.lastName + '</td>'
-                + '<td>' + "" + '</td>'
-                + '<td>' + "" + '</td>'
-                + '<td>' + backer.dateOfBirth + '</td>'
-                + '</tr>'));
+//    $.ajax(
+//        {
+//            url: urlAPI,
+//            method: method
+//        })
+//        .done(result => {
+//            let resultData = "<table  class='table'>";
+//            resultData += ('<tr>'
+//                + '<td>' + result.id + '</td>'
+//                + '<td>' + "" + '</td>'
+//                + '<td>' + result.firstName + '</td>'
+//                + '<td>' + "" + '</td>'
+//                + '<td>' + "" + '</td>'
+//                + '<td>' + "" + '</td>'
+//                + '<td>' + result.lastName + '</td>'
+//                + '<td>' + "" + '</td>'
+//                + '<td>' + "" + '</td>'
+//                + '<td>' + result.dateOfBirth + '</td>'
+//                + '</tr>');
 
-            resultData += '</table>';
-            $("#BackerResults").html(resultData);
+//            resultData += '</table>';
+//            $("#CreatorResults").html(resultData);
 
-        })
-        .fail(failure => {
-            console.log('error in communication');
-            console.log(JSON.stringify(failure));
-        });
-}
+//        })
+//        .fail(failure => {
+//            console.log('error in communication');
+//            console.log(JSON.stringify(failure));
+//        });
+//}
+
+//function loadCreators(id) {
+
+//    let urlAPI = 'https://localhost:44313/api/creatorprofile/'+id;
+//    let method = 'GET';
+
+//    $.ajax(
+//        {
+//            url: urlAPI,
+//            method: method
+//        })
+//        .done(result => {
+//            let resultData = "<table  class='table'>";
+//            resultData += ('<tr>'
+//                + '<td>' + result.id + '</td>'
+//                + '<td>' + "" + '</td>'
+//                + '<td>' + result.firstName + '</td>'
+//                + '<td>' + "" + '</td>'
+//                + '<td>' + "" + '</td>'
+//                + '<td>' + "" + '</td>'
+//                + '<td>' + result.lastName + '</td>'
+//                + '<td>' + "" + '</td>'
+//                + '<td>' + "" + '</td>'
+//                + '<td>' + result.dateOfBirth + '</td>'
+//                + '</tr>');
+
+//            resultData += '</table>';
+//            $("#CreatorResults").html(resultData);
+
+//        })
+//        .fail(failure => {
+//            console.log('error in communication');
+//            console.log(JSON.stringify(failure));
+//        });
+//}
+
+////}
+
+//function loadBackers(id) {
+
+//    let urlAPI = 'https://localhost:44313/api/backerprofile/';
+//    let method = 'GET';
+
+//    $.ajax(
+//        {
+//            url: urlAPI,
+//            method: method
+//        })
+//        .done(result => {
+//            let resultData = "<table  class='table'>";
+//            resultData += ('<tr>'
+//                + '<td>' + result.id + '</td>'
+//                + '<td>' + "" + '</td>'
+//                + '<td>' + result.firstName + '</td>'
+//                + '<td>' + "" + '</td>'
+//                + '<td>' + "" + '</td>'
+//                + '<td>' + "" + '</td>'
+//                + '<td>' + result.lastName + '</td>'
+//                + '<td>' + "" + '</td>'
+//                + '<td>' + "" + '</td>'
+//                + '<td>' + result.dateOfBirth + '</td>'
+//                + '</tr>');
+
+//            resultData += '</table>';
+//            $("#BackerResults").html(resultData);
+
+//        })
+//        .fail(failure => {
+//            console.log('error in communication');
+//            console.log(JSON.stringify(failure));
+//        });
+//}
 
 
 
