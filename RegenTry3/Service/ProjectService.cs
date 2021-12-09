@@ -219,10 +219,10 @@ namespace RegenTry3.Service
             }
             else
             {
-                var Data = projectList.Data.Where(project => project.Title.Contains(searchstring));
+                var Data = projectList.Data.Where(project => project.Title.ToLower().Contains(searchstring.ToLower()));
                 return new ApiResponse<List<Project>>()
                 {
-                    Data = projectList.Data.Where(project => project.Title.Contains(searchstring)).ToList(),
+                    Data = Data.ToList(),
                     Description = "OK",
                     StatusCode = 0
                 };
