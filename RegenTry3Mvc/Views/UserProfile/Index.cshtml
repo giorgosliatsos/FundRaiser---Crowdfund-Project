@@ -1,4 +1,8 @@
-﻿@if (@TempData["Role"].ToString() == "")
+﻿@{
+    ViewData["Title"] = "User Profile";
+}
+
+@if (@TempData["Role"].ToString() == "")
 {
     <h1>User Profile Not Available</h1>
 
@@ -7,12 +11,12 @@
 @if (@TempData["Role"].ToString() != "")
 {
     <h1>User Profile</h1>
-    
+
     <script type="text/javascript" src="/js/site.js"></script>
     <script language="javascript">
         loadUser();
     </script>
-    
+
     <table class="table">
         <thead>
             <tr>

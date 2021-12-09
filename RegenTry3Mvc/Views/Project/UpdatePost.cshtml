@@ -1,4 +1,7 @@
-﻿<div class="d-flex justify-content-center">
+﻿@{
+    ViewData["Title"] = " Update Post ";
+}
+<div class="d-flex justify-content-center">
     <h4>Update Post</h4>
 </div>
 
@@ -9,12 +12,12 @@
             <input name="newPost" id="newPost" class="form-control" placeholder="New name..">
         </div>
     </div>
-        <div class="form-group">
-            <input type="submit" value="Update Post" class="btn btn-primary" />
-        </div>
-    
+    <div class="form-group">
+        <input type="submit" value="Update Post" class="btn btn-primary" />
+    </div>
+
 </form>
 
-<div class="d-flex justify-content-center" >
-    <a class ="btn btn-danger" asp-action="CreatorIndex">Return</a>
+<div class="d-flex justify-content-center">
+    <a class="btn btn-danger" asp-action="CreatorIndex">Return</a>
 </div>

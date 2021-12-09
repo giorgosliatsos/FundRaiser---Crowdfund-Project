@@ -43,6 +43,7 @@ namespace RegenTry3Api
                                   {
                                       builder.WithOrigins("https://localhost:44345")
                                       .AllowAnyHeader();
+                                      //builder.WithOrigins("https://localhost:44345").AllowAnyHeader();
                                   });
             });
 
