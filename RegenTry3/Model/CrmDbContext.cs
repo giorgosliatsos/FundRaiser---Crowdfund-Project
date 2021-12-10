@@ -19,10 +19,10 @@ namespace RegenTry3.Model
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Data Source=localhost;Initial Catalog=RegenCrm;Integrated Security=True");
+            //optionsBuilder.UseSqlServer("Data Source=localhost;Initial Catalog=RegenCrm;Integrated Security=True");
             // optionsBuilder.UseSqlServer("Data Source=LAPTOP-17RK5KIM\\SQLSERVER2019;Initial Catalog=RegenCrm;Integrated Security=True");
             //optionsBuilder.UseSqlServer("Data Source=localhost;Initial Catalog=RegenDB;User ID=sa;Password=admin!@#123");
-            //optionsBuilder.UseSqlServer("Server=tcp:regenteam2server.database.windows.net,1433;Initial Catalog=Team2SQLBase;Persist Security Info=False;User ID=team2admin;Password=regenTeam2;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
+            optionsBuilder.UseSqlServer("Server=tcp:regenteam2server.database.windows.net,1433;Initial Catalog=Team2SQLBase;Persist Security Info=False;User ID=team2admin;Password=regenTeam2;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
             //azure
         }
 
