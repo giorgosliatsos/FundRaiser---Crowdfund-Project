@@ -13,7 +13,8 @@
     <h1> Project @Model.Project.Title</h1>
 </div>
 
-@*<td>@Model.Project.Posts</td>
+
+@*
     @if (@TempData["Role"].ToString() == "Creator")
     {
         <td><a href="/project/updatepost/@Model.Project.Id" data-toogles="tooltip" title="Update Post" class="btn btn-info" role="button">Update post</a></td>
@@ -37,7 +38,8 @@
 
 <table class="table">
     <tr><td><b>Description</b></td> <td>@Model.Project.Description</td></tr>
-    <tr><td><b>Post</b></td></tr>
+
+    <tr><td><b>Post</b></td><td>@Model.Project.Posts</td></tr>
 
     <tr>
         <td>
@@ -79,7 +81,7 @@
                                 <form asp-action="Get">
 
 
-                                    @*<div>prepei to value na ginetai iso me item.Price*@
+
                                     <div>
                                         <input name="value" type="hidden" id="value" class="form-control" value="@item.Price">
                                     </div>
